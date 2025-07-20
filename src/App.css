@@ -1,42 +1,3 @@
-/* Use media queries to detect touch devices */
-@media (hover: none) and (pointer: coarse) {
-  /* This targets touch devices */
-  .gallery-item.hovered .image-container {
-    transform: none; /* Disable hover on touch devices */
-  }
-  
-  .gallery-item.hovered .enhancement-badge {
-    background: rgba(0, 0, 0, 0.7) !important;
-    color: white !important;
-  }
-}
-
-/* Desktop hover behavior */
-@media (hover: hover) and (pointer: fine) {
-  .gallery-item.hovered .image-container {
-    transform: rotateY(180deg);
-  }
-  
-  .gallery-item.hovered .enhancement-badge {
-    background: rgba(255, 165, 0, 0.9) !important;
-    color: #000 !important;
-  }
-}
-
-/* Remove all image borders and outlines */
-.image-before,
-.image-after {
-  outline: none !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-.image-container {
-  outline: none !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
 html, body {
@@ -975,200 +936,28 @@ html, body {
   box-shadow: 0 0 20px rgba(255, 165, 0, 0.4);
 }
 
-/* ===== MOBILE RESPONSIVENESS ===== */
-@media (max-width: 768px) {
-  .flare-title {
-    font-size: 4rem;
-  }
-  
-  .feedback-container {
-    margin: 1rem;
-    padding: 1.5rem;
-  }
-  
-  .button-row {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .main-button {
-    width: 200px;
-  }
-  
-  .radio-option {
-    align-items: flex-start;
-  }
-  
-  .radio-text {
-    font-size: 0.85rem;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-  }
-  
-  .demo-container {
-    padding: 2rem 1rem;
-  }
-  
-  .demo-card {
-    min-width: 90vw;
-    padding: 2rem;
-  }
-  
-  .demo-title {
-    font-size: 1.6rem;
-  }
-  
-  .demo-description {
-    font-size: 1rem;
-  }
-  
-  .zoom-container,
-  .lowlight-container {
-    height: 350px;
-  }
-  
-  .enhance-button {
-    padding: 1.2rem 2rem;
-    font-size: 1rem;
-  }
-  
-  .gallery-item {
-    width: 200px;
-    height: 267px;
-  }
-
-  /* Hide badges on mobile */
-  .enhancement-badge {
-    display: none;
-  }
-
-  /* Faster scrolling on mobile */
-  .gallery-track {
-    animation-duration: 60s;
-  }
-
-  /* Touch interaction for mobile - quick tap to see original */
-  .gallery-item:active .image-container {
-    transform: rotateY(180deg);
-    transition: transform 0.3s ease;
-  }
-
-  /* Override slower desktop transitions on mobile */
-  .gallery-item .image-container {
-    transition: transform 0.3s ease;
-  }
-
-  /* IMPROVED MOBILE LIQUID GLASS OVERLAY */
-  .liquid-glass-overlay {
-    /* Increase padding/margins for better text containment */
-    top: 40px;
-    left: 20px;
-    right: 20px;
-    bottom: 40px;
-    
-    /* Ensure adequate padding inside the overlay */
-    padding: 2rem 1.5rem;
-    
-    /* Adjust border radius to be proportional */
-    border-radius: 20px;
-  }
-  
-  .glass-content {
-    /* Add some internal spacing */
-    padding: 1rem 0;
-  }
-  
-  .overlay-title {
-    /* Smaller title for mobile to fit better */
-    font-size: 2.5rem;
-    margin: 0 0 1.5rem 0;
-    line-height: 1.1;
-    
-    /* Ensure text doesn't break awkwardly */
-    word-break: keep-all;
-  }
-  
-  .overlay-subtitle {
-    font-size: 1.2rem;
-    margin: 0;
-    line-height: 1.4;
-    
-    /* Better text wrapping */
-    word-break: normal;
-    hyphens: auto;
-  }
-}
-
-/* For very small screens */
-@media (max-width: 480px) {
-  .liquid-glass-overlay {
-    top: 30px;
-    left: 15px;
-    right: 15px;
-    bottom: 30px;
-    padding: 1.5rem 1rem;
-  }
-  
-  .overlay-title {
-    font-size: 2rem;
-  }
-  
-  .overlay-subtitle {
-    font-size: 1rem;
-  }
-}
-
-.gallery-item {
-  perspective: 1000px;
-  width: 280px;
-  height: 373px;
-  position: relative;
-  flex-shrink: 0;
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.image-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.6s ease-in-out;
-  transform-style: preserve-3d;
-}
-
-.gallery-item.flipped .image-container {
-  transform: rotateY(180deg);
-}
-
-.image-before,
-.image-after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  backface-visibility: hidden;
-  border-radius: 12px;
-}
-
-.image-before {
-  transform: rotateY(180deg);
-}
-
-.image-after {
-  transform: rotateY(0deg);
-}
 /* ===== TRIALS PAGE STYLES ===== */
+
+/* Trials page container */
 .trials-page {
   min-height: 100vh;
   background: radial-gradient(ellipse at center, #0e0e1a 0%, #050510 100%);
   color: #e0e0e0;
   font-family: 'Share Tech Mono', monospace;
   position: relative;
+}
+
+.trials-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 /* Full-screen liquid glass overlay for trials */
@@ -1181,7 +970,6 @@ html, body {
   z-index: 5;
 }
 
-/* Update overlay title for trials */
 .trials-page .overlay-title {
   font-size: 5rem;
   text-transform: uppercase;
@@ -1194,18 +982,279 @@ html, body {
   text-transform: lowercase;
 }
 
-/* Main trials container */
-.trials-container {
-  width: 100%;
-  min-height: 100vh;
+/* Enhanced Modal styles for authentication */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  box-sizing: border-box;
+  z-index: 2000;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: linear-gradient(
+    135deg,
+    rgba(15, 15, 30, 0.98) 0%,
+    rgba(20, 20, 40, 0.95) 50%,
+    rgba(15, 15, 30, 0.98) 100%
+  );
+  border-radius: 24px;
+  padding: 3rem;
+  max-width: 450px;
+  width: 90%;
+  border: 1px solid rgba(255, 165, 0, 0.4);
+  position: relative;
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(255, 165, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  font-weight: 300;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(255, 165, 0, 0.5);
+  transform: scale(1.05);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.auth-form h2 {
+  color: #ffa500;
+  text-align: center;
+  margin: 0 0 2rem 0;
+  font-size: 1.8rem;
+  text-transform: lowercase;
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(255, 165, 0, 0.3);
+}
+
+.auth-form input {
+  padding: 1.2rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  color: #fff;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: #ffa500;
+  box-shadow: 
+    0 0 20px rgba(255, 165, 0, 0.4),
+    inset 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 165, 0, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  transform: translateY(-1px);
+}
+
+.auth-form input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
+  text-transform: lowercase;
+}
+
+.auth-submit {
+  background: linear-gradient(
+    135deg,
+    #ffa500 0%,
+    #ff8c00 50%,
+    #ffa500 100%
+  );
+  border: none;
+  color: #000;
+  padding: 1.3rem 2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: lowercase;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 4px 15px rgba(255, 165, 0, 0.3),
+    0 0 20px rgba(255, 165, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-submit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.auth-submit:hover:not(:disabled) {
+  background: linear-gradient(
+    135deg,
+    #ff8c00 0%,
+    #ffa500 50%,
+    #ff8c00 100%
+  );
+  box-shadow: 
+    0 6px 25px rgba(255, 165, 0, 0.5),
+    0 0 30px rgba(255, 165, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.auth-submit:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.auth-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 
+    0 2px 8px rgba(255, 165, 0, 0.2),
+    0 0 10px rgba(255, 165, 0, 0.05);
+}
+
+.auth-submit:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 10px rgba(255, 165, 0, 0.4),
+    0 0 15px rgba(255, 165, 0, 0.1);
+}
+
+/* Switch between login/register */
+.auth-form p {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 1rem 0 0 0;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+}
+
+.auth-switch {
+  background: none;
+  border: none;
+  color: #ffa500;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  text-underline-offset: 2px;
+}
+
+.auth-switch:hover {
+  color: #ff8c00;
+  text-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+  text-decoration-color: #ff8c00;
+}
+
+/* Loading state for form submission */
+.auth-submit.loading {
+  position: relative;
+  color: transparent;
+}
+
+.auth-submit.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid transparent;
+  border-top: 2px solid #000;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Input validation states */
+.auth-form input.error {
+  border-color: #ff4444;
+  box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
+}
+
+.auth-form input.success {
+  border-color: #00ff99;
+  box-shadow: 0 0 15px rgba(0, 255, 153, 0.2);
 }
 
 /* User status bar */
@@ -1251,7 +1300,7 @@ html, body {
   color: #000;
 }
 
-/* Clean upload container */
+/* Upload interface */
 .clean-upload-container {
   width: 100%;
   max-width: 600px;
@@ -1294,10 +1343,6 @@ html, body {
   font-weight: 300;
 }
 
-.file-input {
-  display: none;
-}
-
 .upload-trigger {
   font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.7);
@@ -1310,6 +1355,10 @@ html, body {
 
 .upload-trigger:hover {
   color: #ffa500;
+}
+
+.file-input {
+  display: none;
 }
 
 /* File selected state */
@@ -1429,11 +1478,6 @@ html, body {
   margin: 0 auto 2rem auto;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
 .processing-status p {
   margin: 0.5rem 0;
   color: rgba(255, 255, 255, 0.8);
@@ -1516,145 +1560,193 @@ html, body {
   font-family: 'Share Tech Mono', monospace;
 }
 
-/* Modal styles */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-  backdrop-filter: blur(5px);
+/* Use media queries to detect touch devices */
+@media (hover: none) and (pointer: coarse) {
+  /* This targets touch devices */
+  .gallery-item.hovered .image-container {
+    transform: none; /* Disable hover on touch devices */
+  }
+  
+  .gallery-item.hovered .enhancement-badge {
+    background: rgba(0, 0, 0, 0.7) !important;
+    color: white !important;
+  }
 }
 
-.modal-content {
-  background: rgba(15, 15, 30, 0.95);
-  border-radius: 20px;
-  padding: 2rem;
-  max-width: 400px;
-  width: 90%;
-  border: 1px solid rgba(255, 165, 0, 0.3);
-  position: relative;
-  backdrop-filter: blur(10px);
+/* Desktop hover behavior */
+@media (hover: hover) and (pointer: fine) {
+  .gallery-item.hovered .image-container {
+    transform: rotateY(180deg);
+  }
+  
+  .gallery-item.hovered .enhancement-badge {
+    background: rgba(255, 165, 0, 0.9) !important;
+    color: #000 !important;
+  }
 }
 
-.modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.5rem;
-  cursor: pointer;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
+/* Remove all image borders and outlines */
+.image-before,
+.image-after {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-.modal-close:hover {
-  background: rgba(255, 255, 255, 0.1);
+.image-container {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-.auth-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.auth-form h2 {
-  color: #ffa500;
-  text-align: center;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  text-transform: lowercase;
-  font-family: 'Share Tech Mono', monospace;
-}
-
-.auth-form input {
-  padding: 1rem;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.05);
-  color: #fff;
-  font-family: 'Share Tech Mono', monospace;
-  transition: all 0.3s ease;
-}
-
-.auth-form input:focus {
-  outline: none;
-  border-color: #ffa500;
-  box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
-}
-
-.auth-form input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.auth-submit {
-  background: #ffa500;
-  border: none;
-  color: #000;
-  padding: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  text-transform: lowercase;
-  font-family: 'Share Tech Mono', monospace;
-  transition: all 0.3s ease;
-}
-
-.auth-submit:hover:not(:disabled) {
-  background: #ff8c00;
-  box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
-}
-
-.auth-submit:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.auth-switch {
-  background: none;
-  border: none;
-  color: #ffa500;
-  cursor: pointer;
-  text-decoration: underline;
-  font-family: 'Share Tech Mono', monospace;
-}
-
-.auth-switch:hover {
-  color: #ff8c00;
-}
-
-/* Mobile responsiveness */
+/* ===== MOBILE RESPONSIVENESS ===== */
 @media (max-width: 768px) {
+  .flare-title {
+    font-size: 4rem;
+  }
+  
+  .feedback-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .button-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .main-button {
+    width: 200px;
+  }
+  
+  .radio-option {
+    align-items: flex-start;
+  }
+  
+  .radio-text {
+    font-size: 0.85rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .demo-container {
+    padding: 2rem 1rem;
+  }
+  
+  .demo-card {
+    min-width: 90vw;
+    padding: 2rem;
+  }
+  
+  .demo-title {
+    font-size: 1.6rem;
+  }
+  
+  .demo-description {
+    font-size: 1rem;
+  }
+  
+  .zoom-container,
+  .lowlight-container {
+    height: 350px;
+  }
+  
+  .enhance-button {
+    padding: 1.2rem 2rem;
+    font-size: 1rem;
+  }
+  
+  .gallery-item {
+    width: 200px;
+    height: 267px;
+  }
+
+  /* Hide badges on mobile */
+  .enhancement-badge {
+    display: none;
+  }
+
+  /* Faster scrolling on mobile */
+  .gallery-track {
+    animation-duration: 60s;
+  }
+
+  /* Touch interaction for mobile - quick tap to see original */
+  .gallery-item:active .image-container {
+    transform: rotateY(180deg);
+    transition: transform 0.3s ease;
+  }
+
+  /* Override slower desktop transitions on mobile */
+  .gallery-item .image-container {
+    transition: transform 0.3s ease;
+  }
+
+  /* MAKE GALLERY LIQUID GLASS OVERLAY COMPACT ON MOBILE - ONLY FOR GALLERY */
+  .demo-container .gallery-wrapper .liquid-glass-overlay {
+    position: absolute !important;
+    top: 50% !important;
+    left: 2rem !important;
+    right: 2rem !important;
+    bottom: auto !important;
+    transform: translateY(-50%) !important;
+    height: auto !important;
+    padding: 2rem 1.5rem !important;
+    border-radius: 20px !important;
+  }
+  
+  .demo-container .gallery-wrapper .overlay-title {
+    font-size: 2.5rem !important;
+    margin: 0 0 1rem 0 !important;
+    line-height: 1.1 !important;
+  }
+  
+  .demo-container .gallery-wrapper .overlay-subtitle {
+    font-size: 1.1rem !important;
+    margin: 0 !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Mobile modal responsiveness */
+  .modal-content {
+    padding: 2rem;
+    margin: 1rem;
+    border-radius: 20px;
+    max-width: none;
+    width: calc(100% - 2rem);
+  }
+  
+  .auth-form h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .auth-form input {
+    padding: 1rem 1.2rem;
+    font-size: 0.95rem;
+  }
+  
+  .auth-submit {
+    padding: 1.1rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .modal-close {
+    top: 1rem;
+    right: 1rem;
+    width: 32px;
+    height: 32px;
+    font-size: 1.3rem;
+  }
+
   .trials-page .overlay-title {
     font-size: 3rem;
   }
 
   .trials-page .overlay-subtitle {
     font-size: 1.3rem;
-  }
-
-  /* Make liquid glass overlay shorter on mobile - just wrap text */
-  .trials-page .liquid-glass-overlay {
-    position: fixed;
-    top: 50%;
-    left: 2rem;
-    right: 2rem;
-    bottom: auto;
-    transform: translateY(-50%);
-    height: auto;
-    padding: 3rem 2rem;
-    border-radius: 20px;
   }
 
   .upload-text {
@@ -1676,52 +1768,5 @@ html, body {
   .upload-box {
     padding: 2rem 1rem;
     min-height: 200px;
-  }
-
-  .file-actions {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .remove-btn,
-  .process-btn {
-    width: 100%;
-  }
-
-  .modal-content {
-    padding: 1.5rem;
-    margin: 1rem;
-  }
-
-  .processing-status,
-  .results-container {
-    padding: 2rem;
-    margin: 1rem;
-    width: calc(100% - 2rem);
-  }
-}
-
-@media (max-width: 480px) {
-  .trials-page .overlay-title {
-    font-size: 2.5rem;
-  }
-
-  /* Even more compact on very small screens */
-  .trials-page .liquid-glass-overlay {
-    left: 1rem;
-    right: 1rem;
-    padding: 2rem 1.5rem;
-  }
-
-  .upload-text {
-    font-size: 1.5rem;
-  }
-
-  .trials-container {
-    padding: 1rem;
-  }
-
-  .clean-upload-container {
-    margin-top: 1rem;
   }
 }

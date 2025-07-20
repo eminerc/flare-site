@@ -165,7 +165,7 @@ function DemoGallery() {
           >
             <div className="glass-content">
               <h3 className="overlay-title">Flare Gallery</h3>
-              <p className="overlay-subtitle">your photos, the way you <em>wanted</em> them to</p>
+              <p className="overlay-subtitle">your photos, the way you <em>wanted</em> them to look</p>
               <p className="overlay-description">- click to continue -</p>
             </div>
           </div>

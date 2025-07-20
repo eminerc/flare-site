@@ -53,10 +53,10 @@ export function HomePage() {
     cardDiv.innerHTML = `
       <div class="flip-card-inner">
         <div class="flip-card-front">
-          <img src="${pair.before}" alt="Before" style="width: 100%; height: 100%; object-fit: cover;" />
+          <img src="${pair.after}" alt="Before" style="width: 100%; height: 100%; object-fit: cover;" />
         </div>
         <div class="flip-card-back">
-          <img src="${pair.after}" alt="After" style="width: 100%; height: 100%; object-fit: cover;" />
+          <img src="${pair.before}" alt="After" style="width: 100%; height: 100%; object-fit: cover;" />
         </div>
       </div>
     `;
