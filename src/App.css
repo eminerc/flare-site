@@ -1,38 +1,1104 @@
-.App {
-  text-align: center;
+/* Use media queries to detect touch devices */
+@media (hover: none) and (pointer: coarse) {
+  /* This targets touch devices */
+  .gallery-item.hovered .image-container {
+    transform: none; /* Disable hover on touch devices */
+  }
+  
+  .gallery-item.hovered .enhancement-badge {
+    background: rgba(0, 0, 0, 0.7) !important;
+    color: white !important;
+  }
 }
 
-.App-logo {
-  height: 40vmin;
+/* Desktop hover behavior */
+@media (hover: hover) and (pointer: fine) {
+  .gallery-item.hovered .image-container {
+    transform: rotateY(180deg);
+  }
+  
+  .gallery-item.hovered .enhancement-badge {
+    background: rgba(255, 165, 0, 0.9) !important;
+    color: #000 !important;
+  }
+}/* Remove all image borders and outlines */
+.image-before,
+.image-after {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.image-container {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}  /* Faster scrolling on mobile */
+  .gallery-track {
+    animation-duration: 60s;
+  }@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Share Tech Mono', monospace;
+  background: radial-gradient(ellipse at center, #0e0e1a 0%, #050510 100%);
+  color: #e0e0e0;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* Force stronger snap scrolling */
+* {
+  scroll-snap-stop: always;
+}
+
+/* Homepage specific - hide overflow */
+.homepage {
+  overflow: hidden;
+}
+
+/* Root layout */
+.homepage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Background cards (dark, blurred, subtle movement) */
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.bg-card {
+  position: absolute;
+  top: -300px;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  filter: brightness(0.75) blur(1px);
+  pointer-events: auto;
+  overflow: hidden;
+  border-radius: 12px;
+  transform: translateY(0);
+  will-change: transform;
+}
+
+@keyframes rainDown {
+  0% {
+    transform: translateY(0);
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+.flip-card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s ease;
+  transform-style: preserve-3d;
+}
+
+.bg-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-card-front img,
+.flip-card-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* Foreground UI */
+.overlay-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  top: 42%;
+  transform: translateY(-42%);
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* TITLE: Flare */
+.flare-title {
+  font-size: 8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: 'Share Tech Mono', monospace;
+  color: #ffa500;
+  text-shadow: 0 0 4px #ff8c00;
+  user-select: none;
+  margin: 0;
 }
 
-.App-header {
-  background-color: #282c34;
+/* Buttons */
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  pointer-events: auto;
+}
+
+.main-button {
+  padding: 0.85rem 2rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* Button hover colors */
+.main-button:nth-child(1):hover {
+  background-color: #00ff99;
+  color: #000;
+}
+
+.main-button:nth-child(2):hover {
+  background-color: #ffaa00;
+  color: #000;
+}
+
+.main-button:nth-child(3):hover {
+  background-color: #ff4444;
+  color: #fff;
+}
+
+/* Feedback Page Styles */
+.feedback-page {
   min-height: 100vh;
+  padding: 2rem;
+  background: radial-gradient(ellipse at center, #0e0e1a 0%, #050510 100%);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.feedback-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.back-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-family: 'Share Tech Mono', monospace;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-bottom: 2rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.feedback-title {
+  font-size: 2.5rem;
+  color: #ffa500;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.feedback-form {
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  font-family: 'Share Tech Mono', monospace;
+  backdrop-filter: blur(5px);
+  transition: all 0.25s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #ffa500;
+  box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.submit-button {
+  padding: 1rem 2rem;
+  border-radius: 999px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: 1px solid #ffa500;
+  background: rgba(255, 165, 0, 0.1);
+  color: #ffa500;
+  font-family: 'Share Tech Mono', monospace;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-transform: uppercase;
+  margin-top: 1rem;
+}
+
+.submit-button:hover {
+  background: #ffa500;
+  color: #000;
+  box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
+}
+
+/* Radio button styles */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.radio-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+}
+
+.radio-option:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.radio-option input[type="radio"] {
+  margin: 0;
+  width: 18px;
+  height: 18px;
+  accent-color: #ffa500;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.radio-text {
+  color: #ffffff;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: normal;
+  font-size: 0.8rem;
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.other-input {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  font-family: 'Share Tech Mono', monospace;
+  backdrop-filter: blur(5px);
+  transition: all 0.25s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.other-input:focus {
+  outline: none;
+  border-color: #ffa500;
+  box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
+}
+
+.other-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ===== NAVIGATION BUTTONS ===== */
+.nav-buttons {
+  position: fixed;
+  z-index: 100;
+}
+
+.nav-button {
+  position: fixed;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 165, 0, 0.08) 50%,
+    rgba(255, 255, 255, 0.05) 75%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #ffffff;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  outline: none;
+  border: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+}
+
+.nav-button:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 25%,
+    rgba(255, 165, 0, 0.12) 50%,
+    rgba(255, 255, 255, 0.08) 75%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+}
+
+.nav-button:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Desktop positioning - left and right, rotated vertically */
+@media (min-width: 769px) {
+  .home-button {
+    top: 50%;
+    left: 1.5rem;
+    transform: translateY(-50%);
+  }
+  
+  .camera-button {
+    top: 50%;
+    right: 1.5rem;
+    transform: translateY(-50%);
+  }
+}
+
+/* Mobile positioning - top and bottom, horizontal text */
+@media (max-width: 768px) {
+  .nav-button {
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .home-button {
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .camera-button {
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* ===== DEMO GALLERY STYLES ===== */
+.demo-container {
+  background: radial-gradient(ellipse at center, #0e0e1a 0%, #050510 100%);
+  min-height: 100vh;
+  height: 100vh;
+  padding: 2rem;
+  color: #e0e0e0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.gallery-section, .camera-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 3rem;
+  color: #ffa500;
+  margin-bottom: 1rem;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ===== INFINITE SCROLLING GALLERY WITH LIQUID GLASS OVERLAY ===== */
+.gallery-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.liquid-glass-overlay {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  right: 60px;
+  bottom: 80px;
+  z-index: 10;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 165, 0, 0.08) 50%,
+    rgba(255, 255, 255, 0.05) 75%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  opacity: 1;
+  transform: scale(1);
+  animation: gentlePulse 6s ease-in-out infinite;
+}
+
+.liquid-glass-overlay:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 25%,
+    rgba(255, 165, 0, 0.12) 50%,
+    rgba(255, 255, 255, 0.08) 75%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+  backdrop-filter: blur(25px) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transform: scale(1.02);
+}
+
+.liquid-glass-overlay.hidden {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+  backdrop-filter: blur(0px);
+}
+
+.glass-content {
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.overlay-title {
+  font-size: 4rem;
+  font-family: 'Share Tech Mono', monospace;
+  color: #ffa500;
+  margin: 0 0 1rem 0;
+  text-shadow: 
+    0 0 20px rgba(255, 165, 0, 0.5),
+    0 2px 10px rgba(0, 0, 0, 0.8);
+  letter-spacing: 3px;
+  animation: glassGlow 3s ease-in-out infinite alternate;
+}
+
+.overlay-subtitle {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: 1px;
+  animation: subtleFloat 4s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+  0%, 100% {
+    transform: scale(0.98);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes glassGlow {
+  0% {
+    text-shadow: 
+      0 0 20px rgba(255, 165, 0, 0.5),
+      0 2px 10px rgba(0, 0, 0, 0.8);
+  }
+  100% {
+    text-shadow: 
+      0 0 30px rgba(255, 165, 0, 0.8),
+      0 0 40px rgba(255, 165, 0, 0.3),
+      0 2px 10px rgba(0, 0, 0, 0.8);
+  }
+}
+
+@keyframes subtleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+.scrolling-gallery-row {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  position: relative;
+  /* Enable manual scrolling */
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE */
+}
+
+.scrolling-gallery-row::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+/* Pause auto-scroll when user is interacting */
+.scrolling-gallery-row.paused .gallery-track {
+  animation-play-state: paused;
+}
+
+.gallery-track {
+  display: flex;
+  gap: 2rem;
+  animation-duration: 100s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+/* Right scrolling animation */
+.scroll-right .gallery-track {
+  animation-name: scrollRight;
+}
+
+/* Left scrolling animation */
+.scroll-left .gallery-track {
+  animation-name: scrollLeft;
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.gallery-item {
+  position: relative;
+  aspect-ratio: 3/4;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  width: 280px;
+  height: 373px;
+  perspective: 1000px;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.gallery-item:focus,
+.gallery-item:active,
+.gallery-item:visited {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d; /* Enable 3D transforms */
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Flip animation - rotate on hover */
+.gallery-item.hovered .image-container {
+  transform: rotateY(180deg);
+}
+
+.image-before, .image-after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  backface-visibility: hidden; /* Hide back face during flip */
+  border-radius: 12px;
+}
+
+/* Default: Show flare images (image-after) - front face */
+.image-after {
+  transform: rotateY(0deg);
+}
+
+/* Original images (image-before) - back face */
+.image-before {
+  transform: rotateY(180deg);
+}
+
+.gallery-item.hovered .enhancement-badge {
+  background: rgba(255, 165, 0, 0.9) !important;
+  color: #000 !important;
+}
+
+.gallery-item.hovered .enhancement-badge::after {
+  content: "original";
+}
+
+.enhancement-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.7);
   color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-family: 'Share Tech Mono', monospace;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  z-index: 2;
 }
 
-.App-link {
-  color: #61dafb;
+/* ===== CAMERA DEMO STYLES ===== */
+.camera-demos {
+  display: flex;
+  gap: 3rem;
+  overflow-x: auto;
+  padding: 2rem 0 3rem 0;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.camera-demos::-webkit-scrollbar {
+  display: none;
+}
+
+.demo-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 3rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 560px;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+}
+
+.demo-title {
+  font-size: 2rem;
+  color: #ffa500;
+  margin-bottom: 1rem;
+  font-family: 'Share Tech Mono', monospace;
+  text-align: center;
+}
+
+.demo-description {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Zoom Demo */
+.zoom-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.zoom-container {
+  width: 100%;
+  height: 450px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background: #000;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.zoom-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.zoom-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.control-label {
+  color: #ffffff;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.1rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.zoom-slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.zoom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ffa500;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 165, 0, 0.6);
+}
+
+.zoom-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ffa500;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 15px rgba(255, 165, 0, 0.6);
+}
+
+.zoom-labels {
+  display: flex;
+  justify-content: space-between;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Low Light Demo */
+.lowlight-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.lowlight-container {
+  width: 100%;
+  height: 450px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background: #000;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.lowlight-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.lowlight-image.active {
+  opacity: 1;
+}
+
+.lowlight-image.before {
+  filter: brightness(0.3) contrast(0.8);
+}
+
+.lowlight-image.after {
+  filter: brightness(1.2) contrast(1.1) saturate(1.1);
+}
+
+.enhance-button {
+  padding: 1.5rem 2.5rem;
+  border-radius: 999px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: 2px solid #ffa500;
+  background: rgba(255, 165, 0, 0.1);
+  color: #ffa500;
+  font-family: 'Share Tech Mono', monospace;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(255, 165, 0, 0.2);
+}
+
+.enhance-button:hover {
+  background: #ffa500;
+  color: #000;
+  box-shadow: 0 0 30px rgba(255, 165, 0, 0.6);
+  transform: translateY(-2px);
+}
+
+.enhance-button.enhanced {
+  background: rgba(255, 165, 0, 0.2);
+  box-shadow: 0 0 20px rgba(255, 165, 0, 0.4);
+}
+
+/* ===== MOBILE RESPONSIVENESS ===== */
+@media (max-width: 768px) {
+  .flare-title {
+    font-size: 4rem;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .feedback-container {
+    margin: 1rem;
+    padding: 1.5rem;
   }
+  
+  .button-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .main-button {
+    width: 200px;
+  }
+  
+  .radio-option {
+    align-items: flex-start;
+  }
+  
+  .radio-text {
+    font-size: 0.85rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .demo-container {
+    padding: 2rem 1rem;
+  }
+  
+  .demo-card {
+    min-width: 90vw;
+    padding: 2rem;
+  }
+  
+  .demo-title {
+    font-size: 1.6rem;
+  }
+  
+  .demo-description {
+    font-size: 1rem;
+  }
+  
+  .zoom-container,
+  .lowlight-container {
+    height: 350px;
+  }
+  
+  .enhance-button {
+    padding: 1.2rem 2rem;
+    font-size: 1rem;
+  }
+  
+  .gallery-item {
+    width: 200px;
+    height: 267px;
+  }
+
+  /* Hide badges on mobile */
+  .enhancement-badge {
+    display: none;
+  }
+
+  /* Faster scrolling on mobile */
+  .gallery-track {
+    animation-duration: 60s;
+  }
+
+  /* Touch interaction for mobile - quick tap to see original */
+  .gallery-item:active .image-container {
+    transform: rotateY(180deg);
+    transition: transform 0.3s ease;
+  }
+
+  /* Override slower desktop transitions on mobile */
+  .gallery-item .image-container {
+    transition: transform 0.3s ease;
+  }
+}
+
+.gallery-item {
+  perspective: 1000px;
+  width: 280px;
+  height: 373px;
+  position: relative;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+.gallery-item.flipped .image-container {
+  transform: rotateY(180deg);
+}
+
+.image-before,
+.image-after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  backface-visibility: hidden;
+  border-radius: 12px;
+}
+
+.image-before {
+  transform: rotateY(180deg);
+}
+
+.image-after {
+  transform: rotateY(0deg);
 }
