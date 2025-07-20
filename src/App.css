@@ -1162,7 +1162,6 @@ html, body {
 .image-after {
   transform: rotateY(0deg);
 }
-
 /* ===== TRIALS PAGE STYLES ===== */
 .trials-page {
   min-height: 100vh;
@@ -1645,6 +1644,19 @@ html, body {
     font-size: 1.3rem;
   }
 
+  /* Make liquid glass overlay shorter on mobile - just wrap text */
+  .trials-page .liquid-glass-overlay {
+    position: fixed;
+    top: 50%;
+    left: 2rem;
+    right: 2rem;
+    bottom: auto;
+    transform: translateY(-50%);
+    height: auto;
+    padding: 3rem 2rem;
+    border-radius: 20px;
+  }
+
   .upload-text {
     font-size: 2rem;
   }
@@ -1692,6 +1704,13 @@ html, body {
 @media (max-width: 480px) {
   .trials-page .overlay-title {
     font-size: 2.5rem;
+  }
+
+  /* Even more compact on very small screens */
+  .trials-page .liquid-glass-overlay {
+    left: 1rem;
+    right: 1rem;
+    padding: 2rem 1.5rem;
   }
 
   .upload-text {
