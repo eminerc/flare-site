@@ -138,6 +138,7 @@ function DemoGallery() {
     { id: 3, after: "/images/img3_after.png", before: "/images/img3_before.jpg" },
     { id: 8, after: "/images/img8_after.png", before: "/images/img8_before.jpg" },
     { id: 9, after: "/images/img9_after.png", before: "/images/img9_before.jpg" },
+    { id: 11, after: "/images/img11_after.png", before: "/images/img11_before.jpg" },
   ];
 
   const bottomRowImages = [
@@ -146,13 +147,14 @@ function DemoGallery() {
     { id: 6, after: "/images/img6_after.png", before: "/images/img6_before.jpg" },
     { id: 7, after: "/images/img7_after.png", before: "/images/img7_before.jpg" },
     { id: 10, after: "/images/img10_after.png", before: "/images/img10_before.jpg" },
+    { id: 12, after: "/images/img12_after.png", before: "/images/img12_before.jpg" },
   ];
 
   return (
     <div className="demo-container">
       <div className="nav-buttons">
         <button className="nav-button home-button" onClick={() => navigate("/")}>Home</button>
-        <button className="nav-button camera-button" onClick={() => navigate("/camera")}>Trial</button>
+        <button className="nav-button camera-button" onClick={() => navigate("/trials")}>Trial</button>
       </div>
 
       <section className="gallery-section">
@@ -163,7 +165,8 @@ function DemoGallery() {
           >
             <div className="glass-content">
               <h3 className="overlay-title">Flare Gallery</h3>
-              <p className="overlay-subtitle">photos of things the way you <em>saw</em> them</p>
+              <p className="overlay-subtitle">your photos, the way you <em>wanted</em> them to</p>
+              <p className="overlay-description">- click to continue -</p>
             </div>
           </div>
 

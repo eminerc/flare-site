@@ -18,6 +18,9 @@ export function HomePage() {
     { before: "/images/img8_before.jpg", after: "/images/img8_after.png" },
     { before: "/images/img9_before.jpg", after: "/images/img9_after.png" },
     { before: "/images/img10_before.jpg", after: "/images/img10_after.png" },
+    { before: "/images/img11_before.jpg", after: "/images/img11_after.png" },
+    { before: "/images/img12_before.jpg", after: "/images/img12_after.png" },
+
     // Add more as needed
   ];
 
@@ -113,7 +116,7 @@ export function HomePage() {
         <div className="button-row">
           <Link to="/feedback" className="main-button">Feedback</Link>
           <Link to="/gallery" className="main-button">Demo</Link>
-          <a href="#early" className="main-button">Gallery Trial</a>
+          <a href="/trials" className="main-button">Gallery Trial</a>
         </div>
       </div>
     </div>
