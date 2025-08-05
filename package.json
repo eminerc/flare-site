@@ -1,0 +1,36 @@
+{
+  "name": "flare-website",
+  "version": "1.0.0",
+  "description": "Flare - Professional quality mobile photography using diffusion models",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "build": "echo 'Build process would go here'",
+    "deploy": "echo 'Deployment process would go here'",
+    "serve": "live-server --port=3000"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "multer": "^2.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "nodemon": "^3.1.4"
+  },
+  "keywords": [
+    "photography",
+    "diffusion-models",
+    "mobile-camera",
+    "image-processing",
+    "ai"
+  ],
+  "author": "Flare Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flare/website.git"
+  }
+}

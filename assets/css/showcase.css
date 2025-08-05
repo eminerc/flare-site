@@ -1,0 +1,519 @@
+/* Showcase Styles */
+.showcase-main {
+    height: 100vh;
+    background: #000000;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.showcase-header {
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: 64px;
+}
+
+/* Liquid glass effect */
+.showcase-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.02) 40%,
+        rgba(255, 69, 0, 0.02) 60%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    pointer-events: none;
+}
+
+.showcase-tools {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.showcase-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    height: 42px;
+    width: 42px;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 2px;
+}
+
+.showcase-logo svg {
+    height: 100%;
+    width: 100%;
+    filter: drop-shadow(0 0 10px rgba(255, 69, 0, 0.2));
+    transition: all 0.2s ease;
+    transform: scale(1.2);
+}
+
+.showcase-logo::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.1) 0px,
+        rgba(0, 0, 0, 0.1) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    opacity: 0.5;
+    border-radius: 50%;
+}
+
+.showcase-logo::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: radial-gradient(
+        circle at 50% -20%,
+        rgba(255, 69, 0, 0.2) 0%,
+        transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.showcase-logo:hover::before {
+    opacity: 1;
+}
+
+.showcase-logo:hover svg {
+    filter: drop-shadow(0 0 15px rgba(255, 69, 0, 0.3));
+    transform: scale(1.25);
+}
+
+.toggle-container {
+    display: flex;
+    background: rgba(20, 20, 20, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 2px;
+}
+
+.toggle-button {
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 6px 16px;
+    border: none;
+    background: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.toggle-button.active {
+    background: rgba(255, 69, 0, 0.15);
+    color: #ff4500;
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.15);
+}
+
+.showcase-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.control-button {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    background: rgba(20, 20, 20, 0.4);
+    color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.control-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.control-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.share-button {
+    position: relative;
+}
+
+.share-button::after {
+    content: 'Copied!';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+}
+
+.share-button.copied::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.gallery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 4px;
+    background: #000;
+    gap: 4px;
+    overflow-y: auto;
+    height: calc(100vh - 64px);
+    box-sizing: border-box;
+    align-content: flex-start;
+    margin-top: 64px;
+}
+
+.gallery-item {
+    flex-grow: 1;
+    height: 300px;
+    min-width: 300px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.02);
+}
+
+/* This ensures last row items don't stretch */
+.gallery-item:last-child {
+    flex-grow: 0;
+}
+
+.gallery-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+    backface-visibility: hidden;
+}
+
+.gallery-item .before-image {
+    opacity: 0;
+}
+
+.gallery-item .after-image {
+    opacity: 1;
+}
+
+/* View states */
+.view-before .gallery-item .before-image {
+    opacity: 1;
+}
+
+.view-before .gallery-item .after-image {
+    opacity: 0;
+}
+
+/* Image Viewer Modal */
+.image-viewer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-viewer-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-image {
+    position: absolute;
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.modal-image.active {
+    opacity: 1;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.modal-close svg {
+    width: 24px;
+    height: 24px;
+}
+
+.modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.modal-nav.prev {
+    left: 20px;
+}
+
+.modal-nav.next {
+    right: 20px;
+}
+
+.modal-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.modal-nav svg {
+    width: 24px;
+    height: 24px;
+}
+
+.modal-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.modal-toggle {
+    display: flex;
+    background: rgba(20, 20, 20, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 2px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.modal-toggle .toggle-button {
+    min-width: 100px;
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+    .showcase-header {
+        padding: 0.75rem;
+        height: 56px;
+    }
+
+    .showcase-tools {
+        gap: 1rem;
+    }
+
+    .showcase-logo {
+        height: 36px;
+        width: 36px;
+    }
+
+    .toggle-button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .gallery-grid {
+        display: none;
+    }
+
+    .image-viewer-modal {
+        display: flex;
+        position: fixed;
+        margin-top: 56px;
+        height: calc(100vh - 56px);
+    }
+
+    .modal-close {
+        display: none;
+    }
+
+    .modal-nav {
+        width: 40px;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-nav.prev {
+        left: 10px;
+    }
+
+    .modal-nav.next {
+        right: 10px;
+    }
+
+    .modal-nav svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .modal-image {
+        max-width: 95%;
+        max-height: 75vh;
+    }
+
+    .modal-controls {
+        bottom: 15px;
+        width: 90%;
+    }
+
+    .modal-toggle {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .modal-toggle .toggle-button {
+        flex: 1;
+        min-width: 0;
+        padding: 8px 16px;
+    }
+}
+
+/* Small Mobile Styles */
+@media screen and (max-width: 480px) {
+    .showcase-header {
+        padding: 0.5rem;
+        height: 48px;
+    }
+
+    .showcase-logo {
+        height: 32px;
+        width: 32px;
+    }
+
+    .toggle-button {
+        padding: 4px 10px;
+        font-size: 0.75rem;
+    }
+
+    .modal-nav {
+        width: 36px;
+        height: 36px;
+    }
+
+    .modal-nav svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .modal-image {
+        max-width: 100%;
+        max-height: 70vh;
+    }
+
+    .modal-controls {
+        bottom: 10px;
+    }
+
+    .modal-toggle .toggle-button {
+        padding: 6px 12px;
+    }
+}
+
+/* Landscape Mode */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .modal-image {
+        max-height: 85vh;
+    }
+
+    .modal-controls {
+        bottom: 5px;
+    }
+
+    .modal-toggle .toggle-button {
+        padding: 4px 12px;
+    }
+}

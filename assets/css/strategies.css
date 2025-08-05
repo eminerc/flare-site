@@ -1,0 +1,223 @@
+/* Strategies Section Styles */
+.strategies {
+    background: #0a0a0a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    min-height: 100vh;
+    box-sizing: border-box;
+    scroll-snap-align: start;
+}
+
+.strategy-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.strategy-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.02);
+    min-height: 600px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Tablet Responsive */
+@media screen and (max-width: 1024px) {
+    .strategies {
+        padding: 3rem 1.5rem;
+    }
+
+    .strategy-container {
+        gap: 3rem;
+        padding: 0 1.5rem;
+    }
+
+    .strategy-box {
+        min-height: 500px;
+    }
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+    .strategies {
+        padding: 2rem 1rem;
+        height: auto;
+        min-height: auto;
+        align-items: flex-start;
+    }
+
+    .strategy-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0;
+    }
+
+    .strategy-box {
+        padding: 1.5rem;
+        min-height: auto;
+        height: auto;
+    }
+
+    .strategy-box h3 {
+        font-size: 1.8rem;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .isp-comparison {
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .chip-container {
+        display: none;
+    }
+
+    .comparison-table {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 500px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-sizing: border-box;
+    }
+
+    .comparison-table table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+    .comparison-table td {
+        padding: 1rem;
+        text-align: center;
+        font-size: 0.9rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .comparison-table td:first-child {
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .action-button {
+        width: 100%;
+        padding: 12px 24px;
+        font-size: 1rem;
+        position: static;
+        transform: none;
+        margin-top: 2rem;
+    }
+
+    .phone-mockup {
+        width: 160px;
+        height: 320px;
+        margin: 1rem auto;
+    }
+}
+
+/* Small Mobile Responsive */
+@media screen and (max-width: 480px) {
+    .strategies {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .strategy-box {
+        padding: 1.25rem;
+        border-radius: 16px;
+    }
+
+    .strategy-box h3 {
+        font-size: 1.6rem;
+    }
+
+    .chip-box {
+        width: 90%;
+        max-width: 240px;
+    }
+
+    .comparison-table {
+        padding: 1rem;
+        border-radius: 8px;
+    }
+
+    .comparison-table td {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .comparison-table td:first-child {
+        font-size: 0.8rem;
+    }
+
+    .action-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Landscape Mode */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .strategies {
+        padding: 1.5rem 1rem;
+        min-height: auto;
+    }
+
+    .strategy-container {
+        gap: 1.5rem;
+    }
+
+    .strategy-box {
+        min-height: auto;
+        padding: 1.25rem;
+    }
+
+    .isp-comparison {
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .chip-container {
+        display: none;
+    }
+
+    .comparison-table {
+        margin-top: 1.5rem;
+    }
+}
+
+/* Very Small Height Screens */
+@media screen and (max-height: 600px) {
+    .strategies {
+        padding: 1rem;
+        min-height: auto;
+    }
+
+    .strategy-box {
+        min-height: auto;
+        gap: 1.5rem;
+    }
+
+    .phone-mockup {
+        width: 140px;
+        height: 280px;
+        margin: 0.5rem auto;
+    }
+}

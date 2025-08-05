@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Flare - Gallery Showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/showcase.css">
+</head>
+<body>
+    <main class="showcase-main">
+        <div class="showcase-header">
+            <div class="showcase-tools">
+                <a href="/" class="showcase-logo" target="_blank" rel="noopener">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" width="24" height="24">
+                        <defs>
+                            <mask id="circle-mask-header">
+                                <circle cx="256" cy="256" r="256" fill="white"/>
+                            </mask>
+                        </defs>
+                        <g mask="url(#circle-mask-header)">
+                            <path fill="#ff4500" d="M236.000000,513.000000 C157.352402,513.000000 79.204803,513.000000 1.028605,513.000000 C1.028605,342.394043 1.028605,171.788086 1.028605,1.091059 C171.564285,1.091059 342.128632,1.091059 512.846497,1.091059 C512.846497,171.666565 512.846497,342.333252 512.846497,513.000000 C420.788055,513.000000 328.644012,513.000000 236.000000,513.000000 M186.500000,377.957367 C249.621750,377.644836 312.743500,377.330933 375.865234,377.022308 C381.029907,376.997040 386.207428,376.769348 391.357269,377.043335 C412.701172,378.178772 427.182770,359.847809 427.068665,341.088135 C426.794067,295.939697 427.012054,250.788391 426.933075,205.638428 C426.925537,201.335388 426.534119,196.979691 425.791718,192.741135 C423.418518,179.192108 408.330627,165.526917 395.157654,165.065842 C380.690491,164.559479 366.195831,163.797897 351.746338,164.237915 C343.755859,164.481277 339.469849,160.997726 335.869995,154.759567 C329.795471,144.233032 323.501007,133.830566 317.140411,123.473351 C314.651550,119.420685 310.880157,117.046700 305.971466,117.043488 C273.650024,117.022339 241.328445,116.992805 209.007248,117.083107 C203.697815,117.097946 199.389221,119.413361 196.573349,124.135445 C194.441315,127.710724 192.263748,131.259338 190.070206,134.797348 C185.069138,142.863724 180.049194,150.918411 175.030014,158.973557 C172.684998,162.737061 169.243042,163.989243 164.878510,164.130371 C160.937271,164.257797 159.811981,161.976257 158.564240,159.050354 C158.163956,158.111694 156.494324,157.178375 155.389984,157.159790 C145.609894,156.995163 135.823593,156.919617 126.046875,157.148926 C124.640495,157.181915 122.309380,158.782410 122.065353,159.992172 C121.198471,164.289886 118.281776,165.209061 114.680908,166.135757 C99.220528,170.114578 87.169540,184.668610 87.106766,200.255035 C86.914185,248.070007 86.886192,295.886993 87.117279,343.701599 C87.201111,361.047760 102.780357,376.647125 119.590126,376.966614 C141.558426,377.384155 163.529892,377.634705 186.500000,377.957367 z"/>
+                            <path fill="#ff4500" d="M245.972397,368.932251 C240.085632,368.024200 234.004013,367.774719 228.344040,366.100159 C194.056931,355.955627 171.236664,333.315704 160.420792,299.651215 C147.146667,258.335358 160.253662,214.488327 197.417297,186.719986 C216.390640,172.543259 237.689011,166.783234 261.400879,167.853317 C295.673553,169.399994 322.760651,184.476456 341.534149,212.221237 C377.044403,264.700684 355.535675,336.756195 296.861755,361.919708 C289.389038,365.124512 280.965118,366.111328 272.292114,368.311035 C271.375031,368.591034 271.147736,368.685699 270.920441,368.780334 C270.485870,368.756744 270.051300,368.733124 268.847168,368.787079 C260.709198,368.887177 253.340790,368.909698 245.972397,368.932251 M313.744904,290.201050 C311.316681,284.218628 308.655975,278.317383 306.530853,272.229156 C304.701569,266.988464 302.965729,261.613373 302.134033,256.153687 C301.228485,250.208542 297.709351,247.511459 293.261139,251.383453 C288.139771,255.841431 284.259949,261.752075 280.003845,267.160095 C278.874695,268.594849 278.343658,270.500305 277.537994,272.189667 C277.074310,272.099915 276.610626,272.010162 276.146973,271.920410 C276.021912,270.252655 275.595520,268.542969 275.820801,266.923950 C277.259399,256.583649 279.305756,246.306808 280.279083,235.927231 C282.281006,214.578644 266.575958,190.478485 246.358658,183.362244 C244.522598,182.716003 241.323303,182.619736 240.344940,183.702652 C239.127563,185.050110 239.217484,187.911926 239.357758,190.079956 C239.610977,193.992950 241.374130,198.092743 240.627365,201.728516 C238.910889,210.085220 237.451630,218.993942 233.351730,226.244446 C227.267532,237.004089 219.084091,246.594223 211.621826,256.553009 C200.104050,271.924164 195.726532,289.428436 199.267197,307.898071 C206.989532,348.181274 252.838989,364.791138 284.553223,346.586151 C305.642700,334.480164 316.275940,315.998016 313.744904,290.201050 z"/>
+                        </g>
+                    </svg>
+                </a>
+
+                <div class="toggle-container">
+                    <button class="toggle-button active" data-view="after">Enhanced</button>
+                    <button class="toggle-button" data-view="before">Original</button>
+                </div>
+
+
+                <div class="showcase-controls">
+                    <button class="control-button share-button" title="Share Gallery">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"/>
+                            <circle cx="6" cy="12" r="3"/>
+                            <circle cx="18" cy="19" r="3"/>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-grid">
+            <!-- Images will be dynamically added here -->
+        </div>
+    </main>
+
+    <div class="image-viewer-modal">
+        <button class="modal-close" aria-label="Close viewer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+        <button class="modal-nav prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
+        </button>
+        <button class="modal-nav next" aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"/>
+            </svg>
+        </button>
+        <div class="modal-content">
+            <img class="modal-image before-image" alt="Before image">
+            <img class="modal-image after-image" alt="After image">
+        </div>
+        <div class="modal-controls">
+            <div class="modal-toggle">
+                <button class="toggle-button active" data-view="after">Enhanced</button>
+                <button class="toggle-button" data-view="before">Original</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if mobile view
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            const galleryGrid = document.querySelector('.gallery-grid');
+            const toggleButtons = document.querySelectorAll('.toggle-button');
+            const modal = document.querySelector('.image-viewer-modal');
+            const modalBeforeImg = modal.querySelector('.modal-image.before-image');
+            const modalAfterImg = modal.querySelector('.modal-image.after-image');
+            const modalClose = modal.querySelector('.modal-close');
+            const modalPrev = modal.querySelector('.modal-nav.prev');
+            const modalNext = modal.querySelector('.modal-nav.next');
+            const modalToggleButtons = modal.querySelectorAll('.toggle-button');
+
+            let currentView = 'after';
+            let currentImageIndex = 0;
+
+            // Image data
+            const images = [
+                20, 19, 18, 17, 16, 5, 9, 15, 14, 13, 11, 10, 6, 3, 2, 1
+            ].map(id => ({
+                id,
+                before: `../assets/images/img${id}_before.jpg`,
+                after: `../assets/images/img${id}_after.png`
+            }));
+
+            function showImage(index) {
+                currentImageIndex = index;
+                const image = images[index];
+                
+                // Create new Image objects to preload
+                const beforeImg = new Image();
+                const afterImg = new Image();
+                
+                Promise.all([
+                    new Promise(resolve => {
+                        beforeImg.onload = resolve;
+                        beforeImg.src = image.before;
+                    }),
+                    new Promise(resolve => {
+                        afterImg.onload = resolve;
+                        afterImg.src = image.after;
+                    })
+                ]).then(() => {
+                    modalBeforeImg.src = image.before;
+                    modalAfterImg.src = image.after;
+                    updateModalImages();
+                });
+            }
+
+            function updateModalImages() {
+                const isBeforeView = modal.querySelector('.toggle-button[data-view="before"]').classList.contains('active');
+                modalBeforeImg.classList.toggle('active', isBeforeView);
+                modalAfterImg.classList.toggle('active', !isBeforeView);
+            }
+
+            function showPrevImage() {
+                const newIndex = (currentImageIndex - 1 + images.length) % images.length;
+                showImage(newIndex);
+            }
+
+            function showNextImage() {
+                const newIndex = (currentImageIndex + 1) % images.length;
+                showImage(newIndex);
+            }
+
+            if (!isMobile) {
+                modalClose.addEventListener('click', () => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+            
+            modalPrev.addEventListener('click', showPrevImage);
+            modalNext.addEventListener('click', showNextImage);
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    hideModal();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (!modal.classList.contains('active')) return;
+                
+                switch(e.key) {
+                    case 'Escape':
+                        hideModal();
+                        break;
+                    case 'ArrowLeft':
+                        showPrevImage();
+                        break;
+                    case 'ArrowRight':
+                        showNextImage();
+                        break;
+                }
+            });
+
+            modalToggleButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    modalToggleButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    updateModalImages();
+                });
+            });
+
+            // Create gallery items with proper sizing
+            function loadImage(src) {
+                return new Promise((resolve, reject) => {
+                    const img = new Image();
+                    img.onload = () => resolve(img);
+                    img.onerror = reject;
+                    img.src = src;
+                });
+            }
+
+            async function createGalleryItem(image, index) {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                
+                // Load both images to get dimensions
+                const [afterImg, beforeImg] = await Promise.all([
+                    loadImage(image.after),
+                    loadImage(image.before)
+                ]);
+
+                // Use natural aspect ratio to influence item width
+                const aspectRatio = afterImg.naturalWidth / afterImg.naturalHeight;
+                item.style.flexBasis = `${Math.round(300 * aspectRatio)}px`;
+                
+                item.innerHTML = `
+                    <img src="${image.after}" alt="Image ${image.id}" class="after-image" />
+                    <img src="${image.before}" alt="Image ${image.id}" class="before-image" />
+                `;
+
+                // Add click handler to open modal
+                item.addEventListener('click', () => showModal(index));
+                
+                return item;
+            }
+
+            // Load and add all images
+            // Initialize view
+            if (isMobile) {
+                // On mobile, show first image immediately
+                modal.classList.add('active');
+                showImage(0);
+            } else {
+                // On desktop, show grid view
+                Promise.all(images.map((image, index) => createGalleryItem(image, index)))
+                    .then(items => {
+                        items.forEach(item => galleryGrid.appendChild(item));
+                        // Add click handlers for grid items
+                        items.forEach((item, index) => {
+                            item.addEventListener('click', () => {
+                                modal.classList.add('active');
+                                document.body.style.overflow = 'hidden';
+                                showImage(index);
+                            });
+                        });
+                    });
+            }
+
+            // Handle toggle
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const view = button.dataset.view;
+                    if (view === currentView) return;
+
+                    // Update buttons
+                    toggleButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    // Update view
+                    document.body.classList.remove(`view-${currentView}`);
+                    document.body.classList.add(`view-${view}`);
+                    currentView = view;
+                });
+            });
+
+            // Initialize view
+            document.body.classList.add('view-after');
+
+            // Share functionality
+            const shareButton = document.querySelector('.share-button');
+
+            async function shareGallery(url) {
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: 'Flare Gallery',
+                            text: 'Check out these AI-enhanced photos',
+                            url: url
+                        });
+                    } catch (err) {
+                        if (err.name !== 'AbortError') {
+                            fallbackShare(url);
+                        }
+                    }
+                } else {
+                    fallbackShare(url);
+                }
+            }
+
+            function fallbackShare(url) {
+                navigator.clipboard.writeText(url).then(() => {
+                    shareButton.classList.add('copied');
+                    setTimeout(() => {
+                        shareButton.classList.remove('copied');
+                    }, 2000);
+                });
+            }
+
+            // Share button click handler
+            shareButton.addEventListener('click', () => {
+                const url = new URL(window.location.href);
+                if (modal.classList.contains('active')) {
+                    url.searchParams.set('image', currentImageIndex.toString());
+                }
+                shareGallery(url.toString());
+            });
+
+
+            // Touch support for modal
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let touchEndX = 0;
+            let touchEndY = 0;
+            let isSwiping = false;
+
+            modal.addEventListener('touchstart', (e) => {
+                if (!modal.classList.contains('active')) return;
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                isSwiping = true;
+            }, { passive: true });
+
+            modal.addEventListener('touchmove', (e) => {
+                if (!isSwiping) return;
+
+                touchEndX = e.touches[0].clientX;
+                touchEndY = e.touches[0].clientY;
+
+                // Calculate the horizontal and vertical distance
+                const deltaX = touchEndX - touchStartX;
+                const deltaY = touchEndY - touchStartY;
+
+                // If vertical scrolling is dominant, stop handling the swipe
+                if (Math.abs(deltaY) > Math.abs(deltaX)) {
+                    isSwiping = false;
+                    return;
+                }
+
+                // Prevent page scrolling while swiping
+                e.preventDefault();
+            }, { passive: false });
+
+            modal.addEventListener('touchend', () => {
+                if (!isSwiping) return;
+
+                const swipeDistance = touchEndX - touchStartX;
+                const swipeThreshold = window.innerWidth * 0.2; // 20% of screen width
+
+                if (Math.abs(swipeDistance) > swipeThreshold) {
+                    if (swipeDistance > 0) {
+                        showPrevImage();
+                    } else {
+                        showNextImage();
+                    }
+                }
+
+                isSwiping = false;
+            });
+
+            // Double tap to toggle image view
+            let lastTap = 0;
+            modal.addEventListener('touchend', (e) => {
+                const currentTime = new Date().getTime();
+                const tapLength = currentTime - lastTap;
+                
+                if (tapLength < 500 && tapLength > 0) {
+                    // Double tap detected
+                    const activeButton = modal.querySelector('.toggle-button.active');
+                    const otherButton = modal.querySelector('.toggle-button:not(.active)');
+                    
+                    if (activeButton && otherButton) {
+                        activeButton.classList.remove('active');
+                        otherButton.classList.add('active');
+                        updateModalImages();
+                    }
+                    
+                    e.preventDefault();
+                }
+                lastTap = currentTime;
+            });
+
+            // Enhanced keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (!modal.classList.contains('active')) return;
+                
+                switch(e.key) {
+                    case 'Escape':
+                        hideModal();
+                        break;
+                    case 'ArrowLeft':
+                        showPrevImage();
+                        break;
+                    case 'ArrowRight':
+                        showNextImage();
+                        break;
+                    case ' ': // Spacebar
+                        e.preventDefault();
+                        const activeButton = modal.querySelector('.toggle-button.active');
+                        const otherButton = modal.querySelector('.toggle-button:not(.active)');
+                        if (activeButton && otherButton) {
+                            activeButton.classList.remove('active');
+                            otherButton.classList.add('active');
+                            updateModalImages();
+                        }
+                        break;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
