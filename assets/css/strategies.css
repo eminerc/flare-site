@@ -2,12 +2,12 @@
 .strategies {
     background: #0a0a0a;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     padding: 4rem 2rem;
     min-height: 100vh;
     box-sizing: border-box;
-    scroll-snap-align: start;
+    scroll-snap-align: none;
 }
 
 .strategy-container {
@@ -69,6 +69,9 @@
         padding: 1.5rem;
         min-height: auto;
         height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     .strategy-box h3 {
@@ -121,9 +124,10 @@
         width: 100%;
         padding: 12px 24px;
         font-size: 1rem;
-        position: static;
-        transform: none;
-        margin-top: 2rem;
+        position: relative;
+        margin-top: auto;
+        margin-bottom: 0;
+        flex-shrink: 0;
     }
 
     .phone-mockup {
@@ -168,8 +172,11 @@
     }
 
     .action-button {
-        padding: 10px 20px;
-        font-size: 0.9rem;
+        padding: 12px 20px;
+        font-size: 0.95rem;
+        margin-top: auto;
+        margin-bottom: 0;
+        flex-shrink: 0;
     }
 }
 
@@ -221,3 +228,4 @@
         margin: 0.5rem auto;
     }
 }
+

@@ -59,46 +59,50 @@
                 <div class="carousel-container">
                     <div class="carousel-track">
                         <div class="demo-item" data-title="Ultra-Low Light" data-description="Transform dark, noisy photos into bright, clear images without losing detail or adding noise.">
-                            <div class="demo-content demo-lowlight side-by-side">
-                                <div class="image-container before-container">
-                                    <img src="assets/images/demo/lowlight_before.jpg" alt="Low light scene before enhancement" class="before">
-                                </div>
-                                <div class="image-container after-container">
-                                    <img src="assets/images/demo/lowlight_after.png" alt="Low light scene after enhancement" class="after">
-                                </div>
+                            <div class="demo-content demo-lowlight">
+                                <img src="assets/images/demo/lowlight_before.jpg" alt="Low light scene before enhancement" class="before">
+                                <img src="assets/images/demo/lowlight_after.png" alt="Low light scene after enhancement" class="after">
+                                <button class="demo-control" aria-label="Toggle light enhancement">
+                                    <svg viewBox="0 0 24 24" width="24" height="24">
+                                        <path fill="currentColor" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.23,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z"/>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
 
                         <div class="demo-item" data-title="50x+ Zoom" data-description="Achieve incredible zoom clarity beyond your phone's optical limits using AI-powered super-resolution.">
-                            <div class="demo-content demo-zoom side-by-side">
-                                <div class="image-container before-container">
-                                    <img src="assets/images/demo/zoom_before.png" alt="Zoomed image before enhancement" class="before">
-                                </div>
-                                <div class="image-container after-container">
-                                    <img src="assets/images/demo/zoom_after.png" alt="Zoomed image after enhancement" class="after">
-                                </div>
+                            <div class="demo-content demo-zoom">
+                                <img src="assets/images/demo/zoom_before.png" alt="Zoomed image before enhancement" class="before">
+                                <img src="assets/images/demo/zoom_after.png" alt="Zoomed image after enhancement" class="after">
+                                <button class="demo-control" aria-label="Toggle zoom">
+                                    <svg viewBox="0 0 24 24" width="24" height="24">
+                                        <path fill="currentColor" d="M15.5,14L20.5,19L19,20.5L14,15.5V14.71L13.73,14.43C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.43,13.73L14.71,14H15.5M9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14M12,10H10V12H9V10H7V9H9V7H10V9H12V10Z"/>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
 
                         <div class="demo-item" data-title="Subject Isolation" data-description="Automatically identify and enhance subjects while artistically blurring busy backgrounds.">
-                            <div class="demo-content demo-subject side-by-side">
-                                <div class="image-container before-container">
-                                    <img src="assets/images/demo/busyimg_before.jpg" alt="Busy image before enhancement" class="before">
-                                </div>
-                                <div class="image-container after-container">
-                                    <img src="assets/images/demo/busyimg_after.png" alt="Busy image after enhancement" class="after">
-                                </div>
+                            <div class="demo-content demo-subject">
+                                <img src="assets/images/demo/busyimg_before.jpg" alt="Busy image before enhancement" class="before">
+                                <img src="assets/images/demo/busyimg_after.png" alt="Busy image after enhancement" class="after">
+                                <button class="demo-control" aria-label="Toggle subject focus">
+                                    <svg viewBox="0 0 24 24" width="24" height="24">
+                                        <path fill="currentColor" d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C17,4.5 21.27,7.61 23,12C21.27,16.39 17,19.5 12,19.5C7,19.5 2.73,16.39 1,12C2.73,7.61 7,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C15.76,17.5 19.17,15.36 20.82,12C19.17,8.64 15.76,6.5 12,6.5C8.24,6.5 4.83,8.64 3.18,12Z"/>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
 
-                        <div class="demo-item" data-title="Improved Lighting and Composition" data-description="Turn low-quality smartphone photos into professional-looking shots with enhanced detail and color.">
-                            <div class="demo-content demo-subject side-by-side">
-                                <div class="image-container before-container">
-                                    <img src="assets/images/demo/shittycam_before.jpeg" alt="Poor camera image before enhancement" class="before">
-                                </div>
-                                <div class="image-container after-container">
-                                    <img src="assets/images/demo/shittycam_after.png?v=2" alt="Poor camera image after enhancement" class="after">
-                                </div>
+                        <div class="demo-item" data-title="Poor Camera Enhancement" data-description="Turn low-quality smartphone photos into professional-looking shots with enhanced detail and color.">
+                            <div class="demo-content demo-subject">
+                                <img src="assets/images/demo/shittycam_before.jpg" alt="Poor camera image before enhancement" class="before">
+                                <img src="assets/images/demo/shittycam_after.png" alt="Poor camera image after enhancement" class="after">
+                                <button class="demo-control" aria-label="Toggle camera quality">
+                                    <svg viewBox="0 0 24 24" width="24" height="24">
+                                        <path fill="currentColor" d="M4,4H7L9,2H15L17,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"/>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -122,6 +126,22 @@
                 <div class="strategy-box">
                     <h3>The Flare Cloud ISP</h3>
                     <div class="isp-comparison">
+                        <div class="chip-container">
+                            <div class="chip-box traditional-chip">
+                                <div class="chip-title">
+                                    <div class="title-text">Traditional<br>ISP Chip</div>
+                                    <div class="hover-text">Fixed-function hardware<br>with limited capabilities</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chip-container">
+                            <div class="chip-box flare-chip">
+                                <div class="chip-title">
+                                    <div class="title-text">FLARE</div>
+                                    <div class="hover-text">Cloud-powered ISP with<br>AI enhancement</div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="comparison-table">
                             <table>
                                 <tr>
@@ -143,9 +163,6 @@
                                     <td>✓</td>
                                 </tr>
                             </table>
-                        </div>
-                        <div class="comparison-explanation">
-                            <p>Traditional ISP chips are fixed-function hardware with limited capabilities, while FLARE provides a cloud-powered ISP with AI enhancement that transforms mobile photography.</p>
                         </div>
                     </div>
                     <a href="pages/contact.html" class="action-button reach-out-button">Reach Out</a>
@@ -379,7 +396,35 @@
         }, { passive: true });
 
 
+            
+            // Handle demo controls
+            document.querySelectorAll('.demo-control').forEach(control => {
+                control.addEventListener('click', () => {
+                    const demoContent = control.closest('.demo-content');
+                    const afterImage = demoContent.querySelector('.after');
+                    const beforeImage = demoContent.querySelector('.before');
+                    const isActive = afterImage.style.opacity === '1';
+                    const demoZoom = demoContent.classList.contains('demo-zoom') ? demoContent : null;
 
+                    if (demoZoom) {
+                        if (!isActive) {
+                            demoZoom.classList.add('capturing');
+                            createSilentShutterEffect();
+                            setTimeout(() => {
+                                demoZoom.classList.remove('capturing');
+                                demoZoom.classList.add('captured');
+                            }, 150);
+                        } else {
+                            demoZoom.classList.remove('captured');
+                        }
+                    }
+                    
+                    afterImage.style.opacity = isActive ? '0' : '1';
+                    if (demoContent.classList.contains('demo-subject')) {
+                        beforeImage.style.opacity = isActive ? '1' : '0';
+                    }
+                });
+            });
         });
     </script>
 </body>

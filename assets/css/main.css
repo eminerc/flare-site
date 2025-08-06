@@ -27,7 +27,7 @@ body {
 main {
     height: 100vh;
     overflow-y: auto;
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
     scroll-behavior: smooth;
 }
 
@@ -36,10 +36,31 @@ main {
     width: 100vw;
     position: relative;
     scroll-snap-align: center;
-    scroll-snap-stop: always;
+    scroll-snap-stop: normal;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Strong snapping for main content sections */
+.section.hero,
+.section.product-section,
+.section.demo-wrapper {
+    scroll-snap-stop: always;
+    scroll-snap-align: center;
+}
+
+/* Natural scrolling for strategies section and footer */
+.section.strategies {
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+    min-height: auto;
+    height: auto;
+}
+
+.footer {
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
 }
 
 /* Hero Section */
@@ -346,35 +367,98 @@ main {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    width: 64px;
-    height: 64px;
+    width: 70px;
+    height: 70px;
+    border: 3px solid #ff4500;
     border-radius: 50%;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    color: #ff4500;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
     transition: all 0.3s ease;
     z-index: 10;
+    box-shadow: 
+        0 0 30px rgba(255, 69, 0, 0.3),
+        0 8px 25px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    animation: subtle-pulse 3s ease-in-out infinite;
+}
+
+.carousel-nav::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, 
+        rgba(255, 69, 0, 0.4) 0%, 
+        transparent 40%, 
+        rgba(255, 69, 0, 0.2) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.carousel-nav:hover::before {
+    opacity: 1;
 }
 
 .carousel-nav:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 69, 0, 0.15);
+    border-color: #ff6600;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 
+        0 0 40px rgba(255, 69, 0, 0.5),
+        0 12px 35px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.carousel-nav:active {
+    transform: translateY(-50%) scale(1.05);
 }
 
 .carousel-nav.prev {
-    left: 2rem;
+    left: 1rem;
 }
 
 .carousel-nav.next {
-    right: 2rem;
+    right: 1rem;
 }
 
 .carousel-nav svg {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    transition: all 0.2s ease;
+}
+
+.carousel-nav:hover svg {
+    filter: drop-shadow(0 3px 8px rgba(255, 69, 0, 0.4));
+    transform: scale(1.1);
+}
+
+/* Pulsing effect for better visibility */
+@keyframes subtle-pulse {
+    0%, 100% {
+        box-shadow: 
+            0 0 30px rgba(255, 69, 0, 0.3),
+            0 8px 25px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        box-shadow: 
+            0 0 40px rgba(255, 69, 0, 0.4),
+            0 8px 25px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
 }
 
 .demo-info {
@@ -493,7 +577,89 @@ main {
     );
 }
 
-.demo-content img {
+/* Side-by-side layout styles */
+.demo-content.side-by-side {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+/* Hide demo controls for side-by-side layout */
+.demo-content.side-by-side .demo-control {
+    display: none !important;
+}
+
+/* Override demo-specific opacity rules for side-by-side layout */
+.demo-content.side-by-side img.before,
+.demo-content.side-by-side img.after {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    max-height: none !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+}
+
+.image-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    border-radius: 12px;
+}
+
+.image-container:hover img {
+    transform: scale(1.02);
+}
+
+.image-label {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.before-container .image-label {
+    color: #ff4500;
+    background: rgba(255, 69, 0, 0.1);
+    border: 1px solid rgba(255, 69, 0, 0.2);
+}
+
+.after-container .image-label {
+    color: #ff6b35;
+    background: rgba(255, 107, 53, 0.1);
+    border: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+/* Legacy overlay styles (kept for backward compatibility) */
+.demo-content:not(.side-by-side) img {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -501,11 +667,11 @@ main {
     transition: opacity 0.5s ease, transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.demo-content img.before {
+.demo-content:not(.side-by-side) img.before {
     opacity: 1;
 }
 
-.demo-content img.after {
+.demo-content:not(.side-by-side) img.after {
     opacity: 0;
 }
 
@@ -687,22 +853,20 @@ main {
 
 .strategy-box {
     position: relative;
-    padding-bottom: 6rem;  /* Make space for the button */
 }
 
 .action-button {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    margin-top: auto;
     width: auto;
     min-width: 200px;
+    align-self: center;
 }
 
 .isp-comparison {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     margin-bottom: 1rem;
 }
@@ -822,9 +986,8 @@ main {
 }
 
 .comparison-table {
-    grid-column: 1 / -1;
     width: 100%;
-    margin-top: -2rem;
+    margin-top: 1rem;
     overflow-x: auto;
 }
 
@@ -834,28 +997,28 @@ main {
     border-spacing: 0;
     font-family: 'Source Sans Pro', sans-serif;
     color: rgba(255, 255, 255, 0.9);
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     table-layout: fixed;
 }
 
 .comparison-table td {
-    padding: 1rem;
+    padding: 1.5rem;
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    height: 48px;
-    width: calc((100% - 140px) / 3); /* Distribute remaining space evenly among 3 columns */
+    height: 60px;
+    width: calc((100% - 160px) / 3); /* Distribute remaining space evenly among 3 columns */
 }
 
 .comparison-table td:first-child {
-    width: 140px; /* Fixed width for the label column */
+    width: 160px; /* Fixed width for the label column */
 }
 
 .comparison-table tr:first-child td {
     color: rgba(255, 255, 255, 0.9);
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 400;
     text-align: left;
-    padding: 1rem;
+    padding: 1.5rem;
     line-height: 1.4;
     background: transparent;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -879,6 +1042,27 @@ main {
 
 .flare-row td {
     color: rgba(255, 69, 0, 0.9);
+}
+
+.comparison-explanation {
+    margin-top: 1.5rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.comparison-explanation p {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
 }
 
 .action-button {
@@ -965,7 +1149,7 @@ main {
     padding: 3rem 2rem 2rem;
     position: relative;
     z-index: 1;
-    scroll-snap-align: none; /* Disable snap on footer */
+    scroll-snap-align: none;
 }
 
 .footer-content {
