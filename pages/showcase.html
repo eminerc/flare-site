@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Flare - Gallery Showcase</title>
+    <meta name="description" content="Flare: Diffusion-based computational photography software">
+    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/showcase.css">
+    <link rel="stylesheet" href="../assets/css/showcase.css?v=123">
 </head>
 <body>
     <main class="showcase-main">
@@ -133,9 +135,20 @@
             }
 
             function updateModalImages() {
-                const isBeforeView = modal.querySelector('.toggle-button[data-view="before"]').classList.contains('active');
+                const isBeforeView = currentView === 'before';
                 modalBeforeImg.classList.toggle('active', isBeforeView);
                 modalAfterImg.classList.toggle('active', !isBeforeView);
+            }
+
+            function showModal(index) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                showImage(index);
+            }
+
+            function hideModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
             }
 
             function showPrevImage() {
@@ -180,13 +193,7 @@
                 }
             });
 
-            modalToggleButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    modalToggleButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    updateModalImages();
-                });
-            });
+
 
             // Create gallery items with proper sizing
             function loadImage(src) {
@@ -245,21 +252,29 @@
                     });
             }
 
-            // Handle toggle
-            toggleButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const view = button.dataset.view;
-                    if (view === currentView) return;
+            // Handle main toggle
+            function updateView(view) {
+                if (view === currentView) return;
 
-                    // Update buttons
-                    toggleButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-
-                    // Update view
-                    document.body.classList.remove(`view-${currentView}`);
-                    document.body.classList.add(`view-${view}`);
-                    currentView = view;
+                // Update all toggle buttons (main and modal)
+                document.querySelectorAll('.toggle-button').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.view === view);
                 });
+
+                // Update view
+                document.body.classList.remove(`view-${currentView}`);
+                document.body.classList.add(`view-${view}`);
+                currentView = view;
+                
+                // Update modal images if modal is active
+                updateModalImages();
+            }
+
+            // Handle toggle buttons
+            document.addEventListener('click', (e) => {
+                if (e.target.matches('.toggle-button')) {
+                    updateView(e.target.dataset.view);
+                }
             });
 
             // Initialize view
@@ -311,72 +326,68 @@
             let touchEndX = 0;
             let touchEndY = 0;
             let isSwiping = false;
+            let swipeStarted = false;
 
             modal.addEventListener('touchstart', (e) => {
                 if (!modal.classList.contains('active')) return;
                 touchStartX = e.touches[0].clientX;
                 touchStartY = e.touches[0].clientY;
-                isSwiping = true;
+                swipeStarted = true;
+                isSwiping = false;
             }, { passive: true });
 
             modal.addEventListener('touchmove', (e) => {
-                if (!isSwiping) return;
+                if (!swipeStarted) return;
 
                 touchEndX = e.touches[0].clientX;
                 touchEndY = e.touches[0].clientY;
 
                 // Calculate the horizontal and vertical distance
-                const deltaX = touchEndX - touchStartX;
-                const deltaY = touchEndY - touchStartY;
+                const deltaX = Math.abs(touchEndX - touchStartX);
+                const deltaY = Math.abs(touchEndY - touchStartY);
 
-                // If vertical scrolling is dominant, stop handling the swipe
-                if (Math.abs(deltaY) > Math.abs(deltaX)) {
-                    isSwiping = false;
-                    return;
-                }
-
-                // Prevent page scrolling while swiping
-                e.preventDefault();
-            }, { passive: false });
-
-            modal.addEventListener('touchend', () => {
-                if (!isSwiping) return;
-
-                const swipeDistance = touchEndX - touchStartX;
-                const swipeThreshold = window.innerWidth * 0.2; // 20% of screen width
-
-                if (Math.abs(swipeDistance) > swipeThreshold) {
-                    if (swipeDistance > 0) {
-                        showPrevImage();
+                // Only start swiping if horizontal movement is dominant
+                if (!isSwiping && deltaX > 10) {
+                    if (deltaX > deltaY * 1.5) {
+                        isSwiping = true;
+                        // Prevent page scrolling while swiping
+                        e.preventDefault();
                     } else {
-                        showNextImage();
+                        swipeStarted = false;
                     }
                 }
 
-                isSwiping = false;
-            });
-
-            // Double tap to toggle image view
-            let lastTap = 0;
-            modal.addEventListener('touchend', (e) => {
-                const currentTime = new Date().getTime();
-                const tapLength = currentTime - lastTap;
-                
-                if (tapLength < 500 && tapLength > 0) {
-                    // Double tap detected
-                    const activeButton = modal.querySelector('.toggle-button.active');
-                    const otherButton = modal.querySelector('.toggle-button:not(.active)');
-                    
-                    if (activeButton && otherButton) {
-                        activeButton.classList.remove('active');
-                        otherButton.classList.add('active');
-                        updateModalImages();
-                    }
-                    
+                if (isSwiping) {
                     e.preventDefault();
                 }
-                lastTap = currentTime;
+            }, { passive: false });
+
+            modal.addEventListener('touchend', (e) => {
+                if (!swipeStarted) return;
+
+                if (isSwiping) {
+                    const swipeDistance = touchEndX - touchStartX;
+                    const swipeThreshold = window.innerWidth * 0.15; // 15% of screen width
+
+                    if (Math.abs(swipeDistance) > swipeThreshold) {
+                        if (swipeDistance > 0) {
+                            showPrevImage();
+                        } else {
+                            showNextImage();
+                        }
+                    }
+                }
+
+                swipeStarted = false;
+                isSwiping = false;
+                
+                // Small delay to prevent tap events from firing
+                setTimeout(() => {
+                    isSwiping = false;
+                }, 100);
             });
+
+            // Remove double tap functionality - view changes only via buttons
 
             // Enhanced keyboard navigation
             document.addEventListener('keydown', (e) => {
@@ -392,15 +403,9 @@
                     case 'ArrowRight':
                         showNextImage();
                         break;
-                    case ' ': // Spacebar
+                    case ' ': // Spacebar - remove view toggle, only navigation
                         e.preventDefault();
-                        const activeButton = modal.querySelector('.toggle-button.active');
-                        const otherButton = modal.querySelector('.toggle-button:not(.active)');
-                        if (activeButton && otherButton) {
-                            activeButton.classList.remove('active');
-                            otherButton.classList.add('active');
-                            updateModalImages();
-                        }
+                        showNextImage();
                         break;
                 }
             });

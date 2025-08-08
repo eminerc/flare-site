@@ -284,6 +284,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .modal-image {
@@ -295,6 +296,74 @@
     opacity: 0;
     user-select: none;
     -webkit-user-select: none;
+    width: auto;
+    height: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+/* MOBILE: PREVENT ZOOMING AND IMPROVE LAYOUT */
+@media screen and (max-width: 1024px) {
+    body, html {
+        touch-action: pan-x pan-y !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+        -webkit-touch-callout: none !important;
+    }
+    
+    .showcase-header {
+        z-index: 9999 !important;
+        position: fixed !important;
+        display: block !important;
+    }
+    
+    .modal-image {
+        top: 45% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        z-index: 500 !important;
+        touch-action: none !important;
+    }
+    
+    .modal-nav {
+        z-index: 9998 !important;
+        position: fixed !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        width: 60px !important;
+        height: 60px !important;
+        background: rgba(0, 0, 0, 0.7) !important;
+        backdrop-filter: blur(8px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        color: white !important;
+        transition: all 0.2s ease !important;
+    }
+    
+    .modal-nav:hover {
+        background: rgba(255, 255, 255, 0.2) !important;
+        transform: translateY(-50%) scale(1.1) !important;
+    }
+    
+    .modal-nav.prev {
+        left: 20px !important;
+    }
+    
+    .modal-nav.next {
+        right: 20px !important;
+    }
+    
+    .modal-nav svg {
+        width: 28px !important;
+        height: 28px !important;
+    }
 }
 
 .modal-image.active {
@@ -413,8 +482,13 @@
     .image-viewer-modal {
         display: flex;
         position: fixed;
-        margin-top: 56px;
-        height: calc(100vh - 56px);
+        top: 0;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
     }
 
     .modal-close {
@@ -440,14 +514,13 @@
         height: 20px;
     }
 
-    .modal-image {
-        max-width: 95%;
-        max-height: 75vh;
-    }
+
 
     .modal-controls {
         bottom: 15px;
         width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .modal-toggle {
@@ -489,10 +562,7 @@
         height: 18px;
     }
 
-    .modal-image {
-        max-width: 100%;
-        max-height: 70vh;
-    }
+
 
     .modal-controls {
         bottom: 10px;
@@ -505,10 +575,6 @@
 
 /* Landscape Mode */
 @media screen and (max-width: 768px) and (orientation: landscape) {
-    .modal-image {
-        max-height: 85vh;
-    }
-
     .modal-controls {
         bottom: 5px;
     }
@@ -516,4 +582,11 @@
     .modal-toggle .toggle-button {
         padding: 4px 12px;
     }
+
+    .image-viewer-modal {
+        top: 0;
+        margin-top: 0;
+        height: 100vh;
+    }
+
 }
