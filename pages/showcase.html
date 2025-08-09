@@ -178,9 +178,12 @@
             modalPrev.addEventListener('click', showPrevImage);
             modalNext.addEventListener('click', showNextImage);
 
+            // Close modal when clicking outside the image or on the modal background
             modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    hideModal();
+                // Close if clicking on the modal background or outside the modal content
+                if (e.target === modal || !e.target.closest('.modal-content, .modal-nav, .modal-close, .modal-controls')) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
                 }
             });
 
@@ -189,7 +192,8 @@
                 
                 switch(e.key) {
                     case 'Escape':
-                        hideModal();
+                        modal.classList.remove('active');
+                        document.body.style.overflow = '';
                         break;
                     case 'ArrowLeft':
                         showPrevImage();
