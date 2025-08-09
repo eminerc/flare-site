@@ -16,7 +16,7 @@
     <main class="showcase-main">
         <div class="showcase-header">
             <div class="showcase-tools">
-                <a href="/" class="showcase-logo" target="_blank" rel="noopener">
+                <a href="/" class="showcase-logo">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" width="24" height="24">
                         <defs>
                             <mask id="circle-mask-header">
@@ -101,13 +101,22 @@
             let currentView = 'after';
             let currentImageIndex = 0;
 
-            // Image data
+            // Image data with cache busting for development
+            const cacheBuster = Date.now();
             const images = [
-                20, 19, 18, 17, 16, 5, 9, 15, 14, 13, 11, 10, 6, 3, 2, 1
-            ].map(id => ({
+                { id: 14, beforeExt: 'jpg', afterExt: 'png' },
+                { id: 8, beforeExt: 'jpg', afterExt: 'jpg' },
+                { id: 7, beforeExt: 'jpg', afterExt: 'png' },
+                { id: 6, beforeExt: 'jpg', afterExt: 'png' },
+                { id: 5, beforeExt: 'jpg', afterExt: 'png' },
+                { id: 4, beforeExt: 'jpg', afterExt: 'png' },
+                { id: 3, beforeExt: 'jpg', afterExt: 'png' },
+                { id: 2, beforeExt: 'jpg', afterExt: 'jpg' },
+                { id: 1, beforeExt: 'jpg', afterExt: 'png' }
+            ].map(({ id, beforeExt, afterExt }) => ({
                 id,
-                before: `../assets/images/img${id}_before.jpg`,
-                after: `../assets/images/img${id}_after.png`
+                before: `../assets/images/img${id}_before.${beforeExt}?v=${cacheBuster}`,
+                after: `../assets/images/img${id}_after.${afterExt}?v=${cacheBuster}`
             }));
 
             function showImage(index) {
@@ -161,12 +170,10 @@
                 showImage(newIndex);
             }
 
-            if (!isMobile) {
-                modalClose.addEventListener('click', () => {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            }
+            modalClose.addEventListener('click', () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
             
             modalPrev.addEventListener('click', showPrevImage);
             modalNext.addEventListener('click', showNextImage);
@@ -230,27 +237,19 @@
                 return item;
             }
 
-            // Load and add all images
-            // Initialize view
-            if (isMobile) {
-                // On mobile, show first image immediately
-                modal.classList.add('active');
-                showImage(0);
-            } else {
-                // On desktop, show grid view
-                Promise.all(images.map((image, index) => createGalleryItem(image, index)))
-                    .then(items => {
-                        items.forEach(item => galleryGrid.appendChild(item));
-                        // Add click handlers for grid items
-                        items.forEach((item, index) => {
-                            item.addEventListener('click', () => {
-                                modal.classList.add('active');
-                                document.body.style.overflow = 'hidden';
-                                showImage(index);
-                            });
+            // Load and add all images for all devices
+            Promise.all(images.map((image, index) => createGalleryItem(image, index)))
+                .then(items => {
+                    items.forEach(item => galleryGrid.appendChild(item));
+                    // Add click handlers for grid items
+                    items.forEach((item, index) => {
+                        item.addEventListener('click', () => {
+                            modal.classList.add('active');
+                            document.body.style.overflow = 'hidden';
+                            showImage(index);
                         });
                     });
-            }
+                });
 
             // Handle main toggle
             function updateView(view) {

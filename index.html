@@ -28,7 +28,7 @@
         </a>
         <nav class="header-nav">
             <a href="/" class="nav-link">Home</a>
-            <a href="pages/showcase.html" class="nav-link" target="_blank" rel="noopener">Showcase</a>
+            <a href="pages/showcase.html" class="nav-link">Showcase</a>
             <a href="pages/contact.html" class="nav-link">Contact</a>
         </nav>
     </header>
@@ -38,7 +38,7 @@
             <div class="hero-content">
                 <h1 class="title">FLARE</h1>
                 <p class="tagline">take professional quality shots on mobile<br>with a diffusion-based photography stack</p>
-                <button class="demo-button" onclick="window.open('pages/showcase.html', '_blank')">VIEW GALLERY</button>
+                <button class="demo-button" onclick="window.location.href='pages/showcase.html'">VIEW GALLERY</button>
             </div>
         </section>
 
@@ -50,8 +50,8 @@
 
                 <!-- DEMO BACKGROUNDS -->
         <div id="demo-bg-lowlight" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0; pointer-events: none;">
-            <div style="position: absolute; left: 0; top: 0; width: 50%; height: 100%; background-image: url('assets/images/demo/lowlight_before.jpg'); background-size: cover; background-position: center;"></div>
-            <div style="position: absolute; right: 0; top: 0; width: 50%; height: 100%; background-image: url('assets/images/demo/lowlight_after.png'); background-size: cover; background-position: center;"></div>
+            <div id="lowlight-before" style="position: absolute; left: 0; top: 0; width: 50%; height: 100%; background-size: cover; background-position: 25% center; overflow: hidden;"></div>
+            <div id="lowlight-after" style="position: absolute; right: 0; top: 0; width: 50%; height: 100%; background-size: cover; background-position: 75% center; overflow: hidden;"></div>
         </div>
         
         <div id="demo-bg-zoom" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0; pointer-events: none;">
@@ -136,7 +136,7 @@
                 <div class="strategy-box">
                     <h3>Flare Camera and Gallery App</h3>
                     <div class="phone-mockup"></div>
-                    <a href="pages/showcase.html" class="action-button showcase-button" target="_blank" rel="noopener">App Showcase</a>
+                    <a href="pages/showcase.html" class="action-button showcase-button">App Showcase</a>
                 </div>
             </div>
         </section>
@@ -164,7 +164,7 @@
                 <div class="footer-section">
                     <h4 class="footer-title">Product</h4>
                     <nav class="footer-nav">
-                        <a href="pages/showcase.html" class="footer-link" target="_blank" rel="noopener">App Showcase</a>
+                        <a href="pages/showcase.html" class="footer-link">App Showcase</a>
                     </nav>
                 </div>
             </div>
@@ -368,6 +368,11 @@
                 }
             };
             
+            // Set demo background images with cache busting
+            const cacheBuster = Date.now();
+            document.getElementById('lowlight-before').style.backgroundImage = `url('assets/images/demo/lowlight_before.jpg?v=${cacheBuster}')`;
+            document.getElementById('lowlight-after').style.backgroundImage = `url('assets/images/demo/lowlight_after.png?v=${cacheBuster}')`;
+
             // Initial call
             updateDemoDisplay();
             updateHeaderVisibility();

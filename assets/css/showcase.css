@@ -215,10 +215,16 @@
 .gallery-item {
     flex-grow: 1;
     height: 300px;
-    min-width: 300px;
+    min-width: 200px;
     position: relative;
     cursor: pointer;
     transition: transform 0.3s ease;
+}
+
+@media screen and (min-width: 769px) {
+    .gallery-item {
+        min-width: 300px;
+    }
 }
 
 .gallery-item:hover {
@@ -243,6 +249,18 @@
 
 .gallery-item .before-image {
     opacity: 0;
+}
+
+/* Add darkening effect to before images */
+.gallery-item .before-image,
+.modal-image.before-image {
+    filter: brightness(0.85);
+}
+
+/* Add brightness enhancement to after images */
+.gallery-item .after-image,
+.modal-image.after-image {
+    filter: brightness(1.12);
 }
 
 .gallery-item .after-image {
@@ -476,11 +494,43 @@
     }
 
     .gallery-grid {
-        display: none;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        margin-top: 56px !important;
+        min-height: calc(100vh - 56px) !important;
+        height: auto !important;
+        gap: 4px !important;
+        padding: 8px !important;
+        overflow-y: auto !important;
+        align-content: flex-start !important;
+        box-sizing: border-box !important;
+        background: #000 !important;
+    }
+
+    .gallery-item {
+        flex-grow: 1 !important;
+        height: 180px !important;
+        min-width: calc(50% - 6px) !important;
+        max-width: calc(50% - 2px) !important;
+        position: relative !important;
+        cursor: pointer !important;
+        transition: transform 0.3s ease !important;
+        box-sizing: border-box !important;
+    }
+
+    .gallery-item img {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        height: 100% !important;
+        width: 100% !important;
+        object-fit: cover !important;
+        transition: opacity 0.3s ease !important;
+        backface-visibility: hidden !important;
     }
 
     .image-viewer-modal {
-        display: flex;
+        display: none;
         position: fixed;
         top: 0;
         margin: 0;
@@ -491,8 +541,19 @@
         align-items: center;
     }
 
+    .image-viewer-modal.active {
+        display: flex;
+    }
+
     .modal-close {
-        display: none;
+        display: flex;
+        top: 15px;
+        right: 15px;
+        width: 36px;
+        height: 36px;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .modal-nav {
@@ -550,6 +611,42 @@
     .toggle-button {
         padding: 4px 10px;
         font-size: 0.75rem;
+    }
+
+    .gallery-grid {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        margin-top: 48px !important;
+        min-height: calc(100vh - 48px) !important;
+        height: auto !important;
+        gap: 3px !important;
+        padding: 6px !important;
+        overflow-y: auto !important;
+        align-content: flex-start !important;
+        box-sizing: border-box !important;
+        background: #000 !important;
+    }
+
+    .gallery-item {
+        height: 150px !important;
+        flex-grow: 1 !important;
+        min-width: calc(50% - 4px) !important;
+        max-width: calc(50% - 1px) !important;
+        position: relative !important;
+        cursor: pointer !important;
+        transition: transform 0.3s ease !important;
+        box-sizing: border-box !important;
+    }
+
+    .gallery-item img {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        height: 100% !important;
+        width: 100% !important;
+        object-fit: cover !important;
+        transition: opacity 0.3s ease !important;
+        backface-visibility: hidden !important;
     }
 
     .modal-nav {
