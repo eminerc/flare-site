@@ -23,20 +23,31 @@
         .form-container {
             width: 100%;
             max-width: 640px;
-            height: 1285px;
-            overflow: hidden;
+            height: auto;
         }
 
         .form-container iframe {
             width: 100%;
-            height: 100%;
+            height: 1800px;
             border: none;
             display: block;
+            overflow: visible;
+            -webkit-overflow-scrolling: touch;
         }
 
         @media screen and (max-width: 768px) {
             .contact-section {
                 padding: 70px 1rem 1rem;
+                min-height: auto;
+            }
+            
+            .form-container {
+                min-height: auto;
+                height: auto;
+            }
+            
+            .form-container iframe {
+                height: 1600px;
             }
         }
     </style>

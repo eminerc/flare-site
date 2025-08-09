@@ -228,12 +228,23 @@
 
     .comparison-table {
         overflow-x: auto;
-        margin: 1rem -1rem;
-        padding: 0 1rem;
+        margin: 1rem 0;
+        padding: 1rem;
+        -webkit-overflow-scrolling: touch;
     }
 
     .comparison-table table {
-        min-width: 500px;
+        width: 680px;
+    }
+
+    .comparison-table td {
+        white-space: nowrap;
+        width: 170px;
+        padding: 0.75rem 1rem;
+    }
+
+    .comparison-table td:first-child {
+        width: 150px;
     }
 
     .action-button {
@@ -420,13 +431,22 @@
     }
 
     .comparison-table {
-        margin: 1rem -0.5rem;
-        padding: 0 0.5rem;
+        margin: 1rem 0;
+        padding: 0.75rem;
     }
 
     .comparison-table table {
-        min-width: 400px;
+        width: 580px;
         font-size: 0.8rem;
+    }
+
+    .comparison-table td {
+        width: 145px;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .comparison-table td:first-child {
+        width: 125px;
     }
 
     .footer {

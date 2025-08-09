@@ -251,10 +251,10 @@
     opacity: 0;
 }
 
-/* Add darkening effect to before images */
+/* Remove darkening effect - show before images naturally */
 .gallery-item .before-image,
 .modal-image.before-image {
-    filter: brightness(0.85);
+    filter: none;
 }
 
 /* Add brightness enhancement to after images */
