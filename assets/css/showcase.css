@@ -508,9 +508,10 @@
     }
 
     .gallery-item {
-        flex-grow: 1 !important;
+        flex: 0 0 calc(50% - 2px) !important;
+        flex-grow: 0 !important;
         height: 180px !important;
-        min-width: calc(50% - 6px) !important;
+        min-width: calc(50% - 2px) !important;
         max-width: calc(50% - 2px) !important;
         position: relative !important;
         cursor: pointer !important;
@@ -628,10 +629,11 @@
     }
 
     .gallery-item {
+        flex: 0 0 calc(50% - 1.5px) !important;
+        flex-grow: 0 !important;
         height: 150px !important;
-        flex-grow: 1 !important;
-        min-width: calc(50% - 4px) !important;
-        max-width: calc(50% - 1px) !important;
+        min-width: calc(50% - 1.5px) !important;
+        max-width: calc(50% - 1.5px) !important;
         position: relative !important;
         cursor: pointer !important;
         transition: transform 0.3s ease !important;
@@ -667,6 +669,21 @@
 
     .modal-toggle .toggle-button {
         padding: 6px 12px;
+    }
+}
+
+/* iPhone and very small screens */
+@media screen and (max-width: 414px) {
+    .gallery-grid {
+        gap: 2px !important;
+        padding: 4px !important;
+    }
+
+    .gallery-item {
+        flex: 0 0 calc(50% - 1px) !important;
+        min-width: calc(50% - 1px) !important;
+        max-width: calc(50% - 1px) !important;
+        height: 140px !important;
     }
 }
 
