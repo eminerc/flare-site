@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Join the Waitlist - Flare</title>
-    <meta name="description" content="Flare: Diffusion-based computational photography software">
+    <title>Team - Flare</title>
+    <meta name="description" content="Meet the team behind Flare: Diffusion-based computational photography software">
     <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
     <style>
-        .waitlist-section {
+        /* Override header for team page with completely transparent effect */
+        .header {
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border-bottom: none !important;
+        }
+
+        .team-section {
             min-height: 100vh;
             padding: 84px 2rem 2rem;
             background: #0a0a0a;
@@ -19,75 +27,121 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
+            overflow: visible;
         }
 
-        .waitlist-content {
-            max-width: 800px;
+        .team-content {
+            max-width: 1200px;
             width: 100%;
+            text-align: center;
+            overflow: visible;
         }
 
-        .waitlist-title {
+        .team-title {
             font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
             color: #ff4500;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             font-weight: 400;
             text-shadow: 0 0 20px rgba(255, 69, 0, 0.4);
         }
 
-        .waitlist-description {
+        .team-subtitle {
             font-family: 'Source Sans Pro', sans-serif;
             font-size: 1.4rem;
             color: rgba(255, 255, 255, 0.9);
             line-height: 1.6;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .waitlist-button {
-            font-family: 'Source Sans Pro', sans-serif;
-            padding: 12px 32px;
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 24px;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            pointer-events: auto;
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+            overflow: visible;
+        }
+
+        .team-member {
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .member-avatar {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
             z-index: 2;
-            text-decoration: none;
-            display: inline-block;
+            overflow: visible;
         }
 
-        .waitlist-button:hover {
-            background: #98ff98;
-            border-color: #98ff98;
-            color: #000000;
-            transform: translateY(-1px);
+        .member-name {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1.5rem;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
         }
+
+        .member-role {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .member-bio {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+            position: relative;
+            z-index: 2;
+        }
+
 
         @media screen and (max-width: 768px) {
-            .waitlist-section {
+            .team-section {
                 padding: 70px 1rem 1rem;
                 min-height: auto;
             }
             
-            .waitlist-title {
+            .team-title {
                 font-size: 2.5rem;
             }
             
-            .waitlist-description {
+            .team-subtitle {
                 font-size: 1.2rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+
+            .member-avatar {
+                width: 200px;
+                height: 200px;
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -116,14 +170,43 @@
     </header>
 
     <main>
-        <section class="waitlist-section">
-            <div class="waitlist-content">
-                <h1 class="waitlist-title">Join the Waitlist</h1>
-                <p class="waitlist-description">
-                    Be the first to experience professional mobile photography with FLARE. 
-                    Get early access to FLARE early and recieve credit awards for your feedback and capture submissions!
-                </p>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSd2BKxdXvKYhicTyzSCGRvTnD-Cwg1CuyEWZi-B5GMIJbBxDg/viewform" target="_blank" class="waitlist-button">Join Waitlist</a>
+        <section class="team-section">
+            <div class="team-content">
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img src="../assets/images/team/Ethan.jpeg" alt="Ethan Miner" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: center top;">
+                        </div>
+                        <h3 class="member-name">Ethan Miner</h3>
+                        <p class="member-role">Cofounder, Product & Dev</p>
+                        <p class="member-bio">
+                            Ethan works across product strategy and development at Flare. An ME & CS student at Northeastern University, he drives the company's vision, user research, and rapid prototyping. Ethan previously built projects in digital fabrication and applied AI, and is focused on bringing diffusion-powered photography from research into real-world use.
+                        </p>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img src="../assets/images/team/Sean.png" alt="Sean Klein" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: center top;">
+                        </div>
+                        <h3 class="member-name">Sean Klein</h3>
+                        <p class="member-role">Cofounder, Strategy & Dev</p>
+                        <p class="member-bio">
+                            Sean drives strategy and development efforts at Flare.. He holds a B.S. in Computer Science from Stanford and an MBA from MIT Sloan, and has led large-scale ML product initiatives at Uber and Walmart Global Tech. Sean has also worked in venture at Emerson Collective, and brings experience to help Flare scale and reach our wider target market.
+                        </p>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <img src="../assets/images/team/Sam.jpeg" alt="Sam Blouir" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                        </div>
+                        <h3 class="member-name">Sam Blouir</h3>
+                        <p class="member-role">Cofounder, Model Research Lead</p>
+                        <p class="member-bio">
+                            Sam leads model research at Flare. A computer science PhD student at George Mason University, his work focuses on diffusion models & generative modeling. He has applied his research at Amazon AGI. Sam's work drives Flare's diffusion architecture and technical foundation.
+                        </p>
+                    </div>
+                </div>
+
             </div>
         </section>
     </main>

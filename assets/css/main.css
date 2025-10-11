@@ -121,6 +121,10 @@ main {
     margin: 0;
     padding: 0;
     line-height: 1;
+    overflow: visible;
+    white-space: nowrap;
+    max-width: 100%;
+    word-break: keep-all;
 }
 
 .tagline {
@@ -209,8 +213,8 @@ main {
     width: 42px;
     position: relative;
     border-radius: 50%;
-    overflow: hidden;
-    padding: 2px;
+    overflow: visible;
+    padding: 0;
 }
 
 .header-logo svg {
