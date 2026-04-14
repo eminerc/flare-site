@@ -6,12 +6,9 @@
     <title>Flare</title>
     <meta name="description" content="Flare: Diffusion-based computational photography software">
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-    <link rel="preload" as="image" href="assets/images/demo/lowlight_before.jpg">
-    <link rel="preload" as="image" href="assets/images/demo/lowlight_after.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Sans+Pro:wght@300;400;600&display=swap"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
@@ -32,6 +29,7 @@
         <nav class="header-nav">
             <a href="/" class="nav-link">Home</a>
             <a href="pages/showcase.html" class="nav-link">Showcase</a>
+            <a href="pages/team.html" class="nav-link">Team</a>
             <a href="pages/contact.html" class="nav-link">Waitlist</a>
         </nav>
     </header>
@@ -339,6 +337,14 @@
             });
 
             // Initialize
+            console.log(`Demo system initialized with ${demoSections.length} sections and ${demoBackgrounds.length} backgrounds`);
+            demoSections.forEach((section, i) => {
+                console.log(`Section ${i}:`, section.dataset.demo);
+            });
+            demoBackgrounds.forEach((bg, i) => {
+                console.log(`Background ${i}:`, bg.dataset.demo);
+            });
+            
             // Make first demo background present immediately (like entering a page)
             const firstBgInit = document.getElementById('demo-bg-lowlight');
             if (firstBgInit) {
@@ -363,8 +369,10 @@
                 }
             };
             
-            document.getElementById('lowlight-before').style.backgroundImage = `url('assets/images/demo/lowlight_before.jpg')`;
-            document.getElementById('lowlight-after').style.backgroundImage = `url('assets/images/demo/lowlight_after.png')`;
+            // Set demo background images with cache busting
+            const cacheBuster = Date.now();
+            document.getElementById('lowlight-before').style.backgroundImage = `url('assets/images/demo/lowlight_before.jpg?v=${cacheBuster}')`;
+            document.getElementById('lowlight-after').style.backgroundImage = `url('assets/images/demo/lowlight_after.png?v=${cacheBuster}')`;
 
             // Initial call
             updateDemoDisplay();

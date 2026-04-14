@@ -8,8 +8,7 @@
     <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Sans+Pro:wght@300;400;600&display=swap"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/showcase.css?v=123">
 </head>
@@ -102,9 +101,8 @@
             let currentView = 'after';
             let currentImageIndex = 0;
 
-            // Bump ?v= when gallery assets change so browsers can cache aggressively between releases.
-            const GALLERY_ASSET_VERSION = '1';
-            const v = `?v=${GALLERY_ASSET_VERSION}`;
+            // Image data with cache busting for development
+            const cacheBuster = Date.now();
             const images = [
                 { id: 12, beforeExt: 'JPG', afterExt: 'png' },
                 { id: 11, beforeExt: 'JPG', afterExt: 'JPG' },
@@ -120,8 +118,8 @@
                 { id: 1, beforeExt: 'jpg', afterExt: 'png' }
             ].map(({ id, beforeExt, afterExt }) => ({
                 id,
-                before: `../assets/images/img${id}_before.${beforeExt}${v}`,
-                after: `../assets/images/img${id}_after.${afterExt}${v}`
+                before: `../assets/images/img${id}_before.${beforeExt}?v=${cacheBuster}`,
+                after: `../assets/images/img${id}_after.${afterExt}?v=${cacheBuster}`
             }));
 
             function showImage(index) {
@@ -235,51 +233,30 @@
                 const aspectRatio = afterImg.naturalWidth / afterImg.naturalHeight;
                 item.style.flexBasis = `${Math.round(300 * aspectRatio)}px`;
                 
-                const fetchPriority = index < 3 ? 'high' : 'low';
                 item.innerHTML = `
-                    <img src="${image.after}" alt="Image ${image.id}" class="after-image" loading="lazy" decoding="async" fetchpriority="${fetchPriority}" />
-                    <img src="${image.before}" alt="Image ${image.id}" class="before-image" loading="lazy" decoding="async" fetchpriority="low" />
+                    <img src="${image.after}" alt="Image ${image.id}" class="after-image" />
+                    <img src="${image.before}" alt="Image ${image.id}" class="before-image" />
                 `;
 
+                // Add click handler to open modal
+                item.addEventListener('click', () => showModal(index));
+                
                 return item;
             }
 
-            function mountGallerySlot(slot) {
-                const index = parseInt(slot.dataset.index, 10);
-                if (slot.dataset.mounted === '1') return;
-                slot.dataset.mounted = '1';
-                createGalleryItem(images[index], index)
-                    .then((item) => {
-                        slot.replaceWith(item);
+            // Load and add all images for all devices
+            Promise.all(images.map((image, index) => createGalleryItem(image, index)))
+                .then(items => {
+                    items.forEach(item => galleryGrid.appendChild(item));
+                    // Add click handlers for grid items
+                    items.forEach((item, index) => {
                         item.addEventListener('click', () => {
                             modal.classList.add('active');
                             document.body.style.overflow = 'hidden';
                             showImage(index);
                         });
-                    })
-                    .catch(() => {
-                        slot.dataset.mounted = '';
                     });
-            }
-
-            const galleryObserver = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (!entry.isIntersecting) return;
-                        galleryObserver.unobserve(entry.target);
-                        mountGallerySlot(entry.target);
-                    });
-                },
-                { root: galleryGrid, rootMargin: '320px 0px', threshold: 0 }
-            );
-
-            images.forEach((_, index) => {
-                const slot = document.createElement('div');
-                slot.className = 'gallery-item gallery-item--pending';
-                slot.dataset.index = String(index);
-                galleryGrid.appendChild(slot);
-                galleryObserver.observe(slot);
-            });
+                });
 
             // Handle main toggle
             function updateView(view) {
